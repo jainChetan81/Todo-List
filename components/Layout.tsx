@@ -1,6 +1,7 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
 import type { FC } from "react";
+import { Header } from ".";
 type LayoutType = {
 	title: string;
 	keywords?: string;
@@ -20,13 +21,15 @@ const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
 				<link rel="manifest" href="manifest.json" />
 			</Head>
 			<div>
+				<Header />
+				
 				<main>{children}</main>
 			</div>
 		</>
 	);
 };
 Layout.defaultProps = {
-	description: "A Todolist app",
+	description: "A Todo List app",
 	keywords: "[NextJS, Firebase, Typescript, ContextAPI, PWA, PostCSS]",
 };
 Layout.propTypes = {
