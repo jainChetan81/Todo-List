@@ -1,0 +1,55 @@
+.loader {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+	background-color: #000;
+	overflow: hidden;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: expand 0.3s 1;
+	animation-direction: alternate;
+	background: #302d2d;
+	background: radial-gradient(circle, rgba(48, 45, 45, 1) 60%, rgba(89, 102, 98, 1) 100%);
+}
+.loader .spinner {
+	height: 250px;
+	width: 250px;
+	border-radius: 10px;
+	color: #000;
+	animation: flip 1s linear infinite;
+	background-color: #fff;
+}
+.loader h1 {
+	position: absolute;
+	text-transform: uppercase;
+	z-index: 10;
+	background: -webkit-linear-gradient(135deg, #da1515, #363232, #2323e4);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.matrix {
+	overflow: hidden;
+}
+.matrix canvas {
+	position: absolute;
+	inset: 0;
+}
+@keyframes flip {
+	50% {
+		transform: rotateX(180deg);
+	}
+	100% {
+		transform: rotateX(180deg) rotateY(180deg);
+	}
+}
+@keyframes expand {
+	0% {
+		transform: translateY(-100vh);
+	}
+	100% {
+		height: translateY(0);
+	}
+}

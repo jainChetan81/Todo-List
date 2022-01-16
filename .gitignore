@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+yarn.lock
+/yarn.lock
 /.pnp
 .pnp.js
 
@@ -10,7 +12,42 @@
 
 # next.js
 /.next/
+/build/
 /out/
+**/.vscode/**
+
+#PWA
+sw.js
+**/sw.js
+public/sw.js
+./public/sw.js
+
+sw.js.map
+**/sw.js.map
+public/sw.js.map
+./public/sw.js.map
+
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# cypress files
+**/results/**
+# **/videos/**
+# **/screenshots/**
+# **/report/**
+**/coverage/**
+# **/mochawesome-report/**
+
+# vscode
+/.vscode/
+.vscode
+/.vscode
+.vscode/
+package-lock.json
 
 # production
 /build
@@ -28,10 +65,29 @@ yarn-error.log*
 .env.local
 .env.development.local
 .env.test.local
-.env.production.local
+.env.production
 
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
+#amplify-do-not-edit-begin
+amplify/\#current-cloud-backend
+amplify/.config/local-*
+amplify/logs
+amplify/mock-data
+amplify/backend/amplify-meta.json
+amplify/backend/awscloudformation
+amplify/backend/.temp
+build/
+dist/
+node_modules/
+aws-exports.js
+awsconfiguration.json
+amplifyconfiguration.json
+amplifyconfiguration.dart
+amplify-build-config.json
+amplify-gradle-config.json
+amplifytools.xcconfig
+.secret-*
+**.sample
+#amplify-do-not-edit-end

@@ -1,22 +1,33 @@
 {
-  "name": "todolist",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.0.8",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@types/node": "17.0.8",
-    "@types/react": "17.0.38",
-    "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8",
-    "typescript": "4.5.4"
-  }
+	"name": "todolist",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "yarn cache clean --force && next build",
+		"start": "next start",
+		"lint": "next lint",
+		"test": "npm run lint && npm run test:jest",
+		"test:jest": "jest --verbose --coverage",
+		"test:watch": "jest --watchAll --verbose --coverage"
+	},
+	"dependencies": {
+		"next": "12.0.8",
+		"next-pwa": "^5.3.1",
+		"prop-types": "^15.8.1",
+		"react": "17.0.2",
+		"react-dom": "17.0.2"
+	},
+	"devDependencies": {
+		"@types/node": "17.0.8",
+		"@types/react": "17.0.38",
+		"@zeit/next-sass": "^1.0.1",
+		"autoprefixer": "^10.4.2",
+		"eslint": "8.7.0",
+		"eslint-config-next": "12.0.8",
+		"postcss-preset-env": "^7.1.0",
+		"postcss": "^8.4.5",
+		"sass": "^1.45.2",
+		"prettier": "^2.5.1",
+		"typescript": "4.5.4"
+	}
 }
