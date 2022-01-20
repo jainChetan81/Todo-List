@@ -22,7 +22,6 @@ const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
 			</Head>
 			<div>
 				<Header />
-				
 				<main>{children}</main>
 			</div>
 		</>

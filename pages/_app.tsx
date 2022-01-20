@@ -1,12 +1,12 @@
 import "../styles/globals.scss";
 import "../styles/normalize.css";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Loader } from "../components";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const router = useRouter();
+	const router: NextRouter = useRouter();
 	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {
 		const handleRouteChange = (url: string, { shallow }: { shallow: boolean }) => {
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		};
 	});
 
-	return <>{loading ? <Loader /> : <Component {...pageProps} />};</>;
+	return <>{loading ? <Loader /> : <Component {...pageProps} />}</>;
 }
 
 export default MyApp;
