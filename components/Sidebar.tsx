@@ -5,19 +5,19 @@ const Sidebar: FC = () => {
 	return (
 		<aside className="sidebar" data-testid="sidebar">
 			<ul className="sidebar__generic">
-				<li>
+				<li data-testid="inbox" className="inbox">
 					<span>
 						<FaInbox />
 					</span>
 					<span>Inbox</span>
 				</li>
-				<li>
+				<li data-testid="today" className="today">
 					<span>
 						<FaRegCalendar />
 					</span>
 					<span>Today</span>
 				</li>
-				<li>
+				<li data-testid="next_7" className="next_7">
 					<span>
 						<FaRegCalendarAlt />
 					</span>
@@ -26,12 +26,15 @@ const Sidebar: FC = () => {
 			</ul>
 			<div className="sidebar__middle">
 				<span>
-					<FaChevronDown />
+					<span>
+						<FaChevronDown />
+					</span>
 					<h2>Projects</h2>
 				</span>
 			</div>
 			<ul className="sidebar__projects">Projects will be here</ul>
 			{/* TODO: Add Project components here */}
+			Add Project components here
 		</aside>
 	);
 };

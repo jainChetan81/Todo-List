@@ -1,12 +1,11 @@
 import type { FC } from "react";
-import { Sidebar } from ".";
-import { useTasks } from "../hooks";
+import { Sidebar, Tasks } from ".";
 
 const Container: FC = () => {
-	const { tasks, archivedTasks } = useTasks();
 	return (
 		<div>
 			<Sidebar />
+			<Tasks />
 		</div>
 	);
 };

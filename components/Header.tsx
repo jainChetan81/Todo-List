@@ -5,12 +5,14 @@ const Header: FC = () => {
 		<header className="header" data-testid="header">
 			<nav>
 				<div className="logo">
-					<img src="/images/logo.png" alt="Todo List" />
+					<img src="/images/logo.png" alt="Todo Logo" />
 				</div>
 				<div className="settings">
 					<ul>
-						<li>+</li>
-						<li>
+						<li data-test-id="quick-add-task-action" className="settings__add">
+							+
+						</li>
+						<li data-test-id="dark-mode-action" className="settings__dark-mode">
 							<FaPizzaSlice />
 						</li>
 					</ul>
