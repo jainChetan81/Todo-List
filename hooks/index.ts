@@ -1,2 +1,3 @@
 import useTasks from "./useTasks";
-export { useTasks };
+import useProjects from "./useProjects";
+export { useTasks, useProjects };

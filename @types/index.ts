@@ -6,6 +6,12 @@ export type Tasks = {
 	task: string;
 	userId: string;
 };
+export type Projects = {
+	docId: string;
+	name: string;
+	projectId: string;
+	userId: string;
+};
 export type User = {
 	firstName: string;
 	lastName: string;
