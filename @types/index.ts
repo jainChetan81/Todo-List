@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Tasks = {
 	id: string;
 	archived: boolean;
@@ -5,6 +7,14 @@ export type Tasks = {
 	projectId: string;
 	task: string;
 	userId: string;
+};
+export type TaskContextType = {
+	tasks: Tasks[] | [];
+	setTasks: Dispatch<SetStateAction<[] | Tasks[]>> | (() => void);
+};
+export type ProjectContextType = {
+	projects: Projects[] | [];
+	setProjects: Dispatch<SetStateAction<[] | Projects[]>> | (() => void);
 };
 export type Projects = {
 	docId: string;

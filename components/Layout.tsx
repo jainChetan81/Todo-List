@@ -2,6 +2,7 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 import type { FC } from "react";
 import { Header } from ".";
+import { ProjectsProvider, SelectedProjectsProvider } from "../context";
 type LayoutType = {
 	title: string;
 	keywords?: string;
@@ -21,8 +22,12 @@ const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
 				<link rel="manifest" href="manifest.json" />
 			</Head>
 			<div>
-				<Header />
-				<main>{children}</main>
+				<SelectedProjectsProvider>
+					<ProjectsProvider>
+						<Header />
+						<main>{children}</main>
+					</ProjectsProvider>
+				</SelectedProjectsProvider>
 			</div>
 		</>
 	);

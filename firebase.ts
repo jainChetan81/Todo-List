@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import type { FirebaseApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { collection, CollectionReference, DocumentData, getFirestore } from "firebase/firestore";
 import type { Firestore } from "firebase/firestore";
 import { Auth, getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -20,5 +20,7 @@ const firebaseConfig: FirebaseApp = initializeApp({
 
 const firestore: Firestore = getFirestore(firebaseConfig);
 const auth: Auth = getAuth(firebaseConfig);
+export const projectCollectionRef: CollectionReference<DocumentData> = collection(firestore, "projects");
+export const taskCollectionRef: CollectionReference<DocumentData> = collection(firestore, "tasks");
 
 export { firebaseConfig as firebase, firestore, auth };
