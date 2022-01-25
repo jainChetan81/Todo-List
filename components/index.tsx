@@ -4,5 +4,6 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Container from "./Container";
 import Tasks from "./Tasks";
+import Projects from "./Projects/index";
 import Checkbox from "./global/Checkbox";
-export { Layout, Loader, Header, Sidebar, Container, Tasks, Checkbox };
+export { Layout, Loader, Header, Sidebar, Container, Tasks, Checkbox, Projects };

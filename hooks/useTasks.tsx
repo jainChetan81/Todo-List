@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Tasks } from "../@types";
-import { firestore } from "../firebase";
-import { collection, getDocs, onSnapshot, query, QueryConstraint, where } from "firebase/firestore";
-import type { DocumentData, QuerySnapshot, CollectionReference } from "firebase/firestore";
+import { taskCollectionRef } from "../firebase";
+import { getDocs, query, QueryConstraint, where } from "firebase/firestore";
+import type { DocumentData, QuerySnapshot } from "firebase/firestore";
 import moment from "moment";
 import { collatedTaskExist } from "../helpers";
 
@@ -11,20 +11,19 @@ const useTasks = (selectedProject: string | number) => {
 	const [archivedTasks, setArchivedTasks] = useState<Tasks[] | []>([]);
 	useEffect(() => {
 		const fetchTasks = async () => {
-			const collectionRef: CollectionReference<DocumentData> = collection(firestore, "tasks");
 			const queryConsUserId: QueryConstraint = where("userId", "==", "G3eOFfoP0iZ233123");
 			const queryConsProjectId: QueryConstraint = where("projectId", "==", selectedProject);
 			const queryConsDate: QueryConstraint = where("date", "==", moment().format("DD/MM/YYYY"));
-			let unsubscribe: QuerySnapshot<DocumentData> = await getDocs(query(collectionRef, queryConsUserId));
+			let unsubscribe: QuerySnapshot<DocumentData> = await getDocs(query(taskCollectionRef, queryConsUserId));
 			unsubscribe =
 				selectedProject && !collatedTaskExist(selectedProject)
-					? (unsubscribe = await getDocs(query(collectionRef, queryConsUserId, queryConsProjectId)))
+					? (unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, queryConsProjectId)))
 					: selectedProject == "TODAY"
 					? (unsubscribe = await getDocs(
-							query(collectionRef, queryConsUserId, queryConsProjectId, queryConsDate)
+							query(taskCollectionRef, queryConsUserId, queryConsProjectId, queryConsDate)
 					  ))
 					: selectedProject === "INBOX" || selectedProject === 0
-					? (unsubscribe = await getDocs(query(collectionRef, queryConsUserId, where("date", "==", ""))))
+					? (unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, where("date", "==", ""))))
 					: unsubscribe;
 			return unsubscribe;
 		};

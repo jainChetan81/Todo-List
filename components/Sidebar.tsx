@@ -1,7 +1,12 @@
-import type { FC } from "react";
+import { FC, useState } from "react";
 import { FaChevronDown, FaInbox, FaRegCalendar, FaRegCalendarAlt } from "react-icons/fa";
+import { Projects } from ".";
+import { useSelectedProjectsValue } from "../context";
 
 const Sidebar: FC = () => {
+	const { setSelectedProject } = useSelectedProjectsValue();
+	const [active, setActive] = useState<string>("inbox");
+	const [showProjects, setShowProjects] = useState<boolean>(true);
 	return (
 		<aside className="sidebar" data-testid="sidebar">
 			<ul className="sidebar__generic">
@@ -34,7 +39,7 @@ const Sidebar: FC = () => {
 			</div>
 			<ul className="sidebar__projects">Projects will be here</ul>
 			{/* TODO: Add Project components here */}
-			Add Project components here
+			{showProjects && <Projects />}
 		</aside>
 	);
 };
