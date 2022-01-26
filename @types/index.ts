@@ -16,11 +16,16 @@ export type ProjectContextType = {
 	projects: Projects[] | [];
 	setProjects: Dispatch<SetStateAction<[] | Projects[]>> | (() => void);
 };
+export type COLLATED_TASKS = {
+	key: string;
+	name: string;
+};
 export type Projects = {
 	docId: string;
 	name: string;
 	projectId: string;
 	userId: string;
+	key?: string;
 };
 export type User = {
 	firstName: string;

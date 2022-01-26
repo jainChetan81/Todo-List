@@ -6,7 +6,10 @@ class MyDocument extends Document {
 			<Html lang="en">
 				<Head>
 					<link rel="manifest" href="/manifest.json" />
-					<link rel="apple-touch-icon" href="/oo" />
+					<link
+						rel="apple-touch-icon"
+						href="https://ik.imagekit.io/clhowstalgz/chetan?tr=w-200,h-200,r-100"
+					/>
 					<meta name="theme-color" content="#ffffff" />
 					<meta name="msapplication-TileColor" content="#2B5797" />
 					<meta name="msapplication-tap-highlight" content="no" />
