@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Projects } from "../../@types";
-import { useProjectsValue, useSelectedProjectsValue } from "../../context";
+import { useProjectsValue, useSelectedProjectValue } from "../../context";
 import IndividualProject from "./IndividualProject";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 const Projects: FC<Props> = ({ activeNull = null }) => {
 	const [active, setActive] = useState<string | null>(activeNull);
-	const { setSelectedProjects } = useSelectedProjectsValue();
+	const { setSelectedProject } = useSelectedProjectValue();
 	const { projects } = useProjectsValue();
 	return projects && projects.length ? (
 		<ul className="sidebar__projects">
@@ -19,11 +19,11 @@ const Projects: FC<Props> = ({ activeNull = null }) => {
 					data-testid="project-action"
 					className={`${active === project.projectId ? "active" : ""} sidebar__project`}
 					onClick={() => {
-						setSelectedProjects(project.projectId);
+						setSelectedProject(project.projectId);
 						setActive(project.projectId);
 					}}
 					onKeyDown={() => {
-						setSelectedProjects(project.projectId);
+						setSelectedProject(project.projectId);
 						setActive(project.projectId);
 					}}
 				>

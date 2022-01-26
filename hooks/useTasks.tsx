@@ -11,20 +11,18 @@ const useTasks = (selectedProject: string | number) => {
 	const [archivedTasks, setArchivedTasks] = useState<Tasks[] | []>([]);
 	useEffect(() => {
 		const fetchTasks = async () => {
-			const queryConsUserId: QueryConstraint = where("userId", "==", "G3eOFfoP0iZ233123");
-			const queryConsProjectId: QueryConstraint = where("projectId", "==", selectedProject);
+			const queryConsUserId: QueryConstraint = where("userId", "==", "UESs1wMq3aMShh6543F9");
+			const queryConsProjectId: QueryConstraint = where("projectId", "==", "G3eOFfoP0iZAAzsFdQe5");
 			const queryConsDate: QueryConstraint = where("date", "==", moment().format("DD/MM/YYYY"));
 			let unsubscribe: QuerySnapshot<DocumentData> = await getDocs(query(taskCollectionRef, queryConsUserId));
-			unsubscribe =
-				selectedProject && !collatedTaskExist(selectedProject)
-					? (unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, queryConsProjectId)))
-					: selectedProject == "TODAY"
-					? (unsubscribe = await getDocs(
-							query(taskCollectionRef, queryConsUserId, queryConsProjectId, queryConsDate)
-					  ))
-					: selectedProject === "INBOX" || selectedProject === 0
-					? (unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, where("date", "==", ""))))
-					: unsubscribe;
+			if (selectedProject && !collatedTaskExist(selectedProject)) {
+				unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, queryConsProjectId));
+			}
+			if (selectedProject == "TODAY") {
+				unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, queryConsDate));
+			} else if (selectedProject == "INBOX" || selectedProject === 0) {
+				unsubscribe = await getDocs(query(taskCollectionRef, queryConsUserId, where("date", "==", "")));
+			}
 			return unsubscribe;
 		};
 

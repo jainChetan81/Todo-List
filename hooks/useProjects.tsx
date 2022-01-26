@@ -26,7 +26,6 @@ const useProjects = () => {
 				docs.push({ docId: doc.id, ...doc.data() } as Projects);
 			});
 			if (JSON.stringify(projects) !== JSON.stringify(docs)) {
-				console.log("docs", docs);
 				setProjects(docs);
 			}
 		});

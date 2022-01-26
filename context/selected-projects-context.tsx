@@ -1,13 +1,17 @@
 import { Context, createContext, useContext, useState } from "react";
-import { ProjectContextType } from "../@types";
+import PropTypes from "prop-types";
+export const SelectedProjectContext: Context<any> = createContext([[], () => {}]);
+export const SelectedProjectProvider = ({ children }: any): JSX.Element => {
+	const [selectedProject, setSelectedProject] = useState<string>("INBOX");
 
-export const SelectedProjectsContext: Context<any> = createContext([[], () => {}]);
-export const SelectedProjectsProvider = ({ children }: any): JSX.Element => {
-	const [selectedProjects, setSelectedProjects] = useState<string>("INBOX");
 	return (
-		<SelectedProjectsContext.Provider value={{ selectedProjects, setSelectedProjects }}>
+		<SelectedProjectContext.Provider value={{ selectedProject, setSelectedProject }}>
 			{children}
-		</SelectedProjectsContext.Provider>
+		</SelectedProjectContext.Provider>
 	);
 };
-export const useSelectedProjectsValue = () => useContext(SelectedProjectsContext);
+export const useSelectedProjectValue = () => useContext(SelectedProjectContext);
+
+SelectedProjectProvider.propTypes = {
+	children: PropTypes.node.isRequired,
+};

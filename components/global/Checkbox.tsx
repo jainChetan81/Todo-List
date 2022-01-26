@@ -1,13 +1,4 @@
-import {
-	collection,
-	CollectionReference,
-	doc,
-	DocumentData,
-	DocumentReference,
-	QueryConstraint,
-	setDoc,
-	where,
-} from "firebase/firestore";
+import { doc, DocumentData, DocumentReference, setDoc } from "firebase/firestore";
 import { FC } from "react";
 import { firestore } from "../../firebase";
 type Props = {

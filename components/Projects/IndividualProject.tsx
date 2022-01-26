@@ -2,7 +2,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { FC, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Projects } from "../../@types";
-import { useSelectedProjectsValue } from "../../context";
+import { useSelectedProjectValue } from "../../context";
 import { projectCollectionRef } from "../../firebase";
 import { useProjects } from "../../hooks";
 type Props = {
@@ -11,12 +11,12 @@ type Props = {
 const IndividualProject: FC<Props> = ({ project }) => {
 	const [showConfirm, setShowConfirm] = useState<boolean>(false);
 	const { projects, setProjects } = useProjects();
-	const { setSelectedProjects } = useSelectedProjectsValue();
+	const { setSelectedProject } = useSelectedProjectValue();
 
 	const deleteProject = (docId: string): void => {
 		deleteDoc(doc(projectCollectionRef, docId)).then(() => {
 			setProjects([...projects]);
-			setSelectedProjects("INBOX");
+			setSelectedProject("INBOX");
 		});
 	};
 	return (
