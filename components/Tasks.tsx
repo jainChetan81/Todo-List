@@ -17,9 +17,6 @@ const Tasks: FC = () => {
 	if (collatedTaskExist(selectedProject) && projects && projects.length > 0 && selectedProject) {
 		projectName = getCollatedTitle(collatedTask, selectedProject)?.name;
 	}
-	useEffect(() => {
-		document.title = `${projectName} | TodoList`;
-	}, [projectName]);
 
 	return (
 		<div className="tasks" data-testid="tasks">
