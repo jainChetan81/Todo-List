@@ -185,6 +185,7 @@ header {
 	li {
 		padding-left: 10px;
 		padding-right: 15px;
+		margin-block: 10px;
 		&:hover .sidebar__project-delete {
 			display: block;
 		}
@@ -205,37 +206,42 @@ header {
 			font-weight: bold;
 			background-color: #fff;
 		}
-		&:nth-child(1) {
-			.sidebar__dot {
-				color: #6accbc;
-			}
-		}
-		&:nth-child(2) {
-			.sidebar__dot {
-				color: #fad003;
-			}
-		}
-		&:nth-child(3) {
-			.sidebar__dot {
-				color: #ffd8d5;
-			}
-		}
-		&:nth-child(4) {
-			.sidebar__dot {
-				color: #ff9932;
-			}
-		}
-		&:nth-child(5) {
-			.sidebar__dot {
-				color: #af38eb;
-			}
-		}
 	}
 	&__projects {
 		padding-left: 3px;
 	}
 	&__project {
 		@include va("left");
+		&::before {
+			content: "•";
+			display: inline-block;
+			width: 1em;
+		}
+		&:nth-of-type(1) {
+			&::before {
+				color: #6accbc;
+			}
+		}
+		&:nth-of-type(2) {
+			&::before {
+				color: #fad003;
+			}
+		}
+		&:nth-of-type(3) {
+			&::before {
+				color: #ffd8d5;
+			}
+		}
+		&:nth-of-type(4) {
+			&::before {
+				color: #ff9932;
+			}
+		}
+		&:nth-of-type(5) {
+			&::before {
+				color: #af38eb;
+			}
+		}
 	}
 	&__dot {
 		margin-right: 10px;
@@ -287,5 +293,132 @@ header {
 				background-color: #fff;
 			}
 		}
+	}
+}
+// SHow confirm place
+.project-delete-modal {
+	position: relative;
+	&__inner {
+		@include box-overlay();
+		z-index: 99;
+		width: 200px;
+		padding: 10px;
+		top: 10px;
+		right: 0;
+		background-color: #fff;
+		p {
+			margin-top: 5px;
+			margin-bottom: 5px;
+			line-height: normal;
+			font-weight: normal;
+			font-size: 15px;
+		}
+		button {
+			@include btn("50px");
+		}
+		span {
+			@include cancel();
+			font-weight: normal;
+		}
+	}
+}
+// main content
+
+.content {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 266px auto;
+	max-width: 992px;
+	margin: auto;
+}
+
+.tasks {
+	// width: 656px;
+	background-color: #fff;
+	// margin-left: 266px;
+	border-right: $generic-border;
+	min-height: 100vh;
+	padding-inline: 40px;
+	padding-block: 80px;
+	@include mq("900px") {
+		margin-left: 0;
+		width: auto;
+	}
+	h2 {
+		font-size: 20px;
+		font-weight: normal;
+		margin: 0px 20px 20px 0;
+	}
+	.add-tasks {
+		margin-top: 20px;
+	}
+	&__list li {
+		display: flex;
+		line-height: 18px;
+		color: #333;
+		padding-top: 10px;
+		font-size: 14px;
+		list-style-type: none;
+		border-bottom: 1px solid #f0f0f0;
+		.checkbox-holder {
+			margin-right: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: 16px;
+			.checkbox {
+				cursor: pointer;
+				border-color: gray;
+				color: #343434;
+				height: 16px;
+				width: 16px;
+				display: block;
+				border: 1px solid gray;
+				border-radius: 16px;
+			}
+		}
+	}
+}
+// =================== ADD TASKS ====================
+.add-task {
+}
+.add-task__plus,
+.add-project__plus {
+	color: #dd4b39;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.add-task__text,
+.add-project__text {
+	display: inline-block;
+	color: #545454;
+	font-size: 14px;
+	margin-left: 15px;
+	cursor: pointer;
+}
+// =================== ADD PROJECT ====================
+.add-project {
+	padding-inline: 15px;
+	margin-top: 20px;
+	&__input {
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #fff;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
+		border-radius: 3px;
+	}
+	&__name {
+		width: 100%;
+		border: 1px solid #ddd;
+		border-radius: 3px;
+		height: 35px;
+		padding-inline: 10px;
+	}
+	&__submit {
+		@include btn("50px");
+	}
+	&__cancel {
+		@include cancel();
 	}
 }

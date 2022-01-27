@@ -3,7 +3,7 @@ import { Sidebar, Tasks } from ".";
 
 const Container: FC = () => {
 	return (
-		<div>
+		<div className="content">
 			<Sidebar />
 			<Tasks />
 		</div>

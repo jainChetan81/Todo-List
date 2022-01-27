@@ -2,7 +2,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { FC, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Projects } from "../../@types";
-import { useSelectedProjectsValue } from "../../context";
+import { useSelectedProjectValue } from "../../context";
 import { projectCollectionRef } from "../../firebase";
 import { useProjects } from "../../hooks";
 type Props = {
@@ -11,17 +11,16 @@ type Props = {
 const IndividualProject: FC<Props> = ({ project }) => {
 	const [showConfirm, setShowConfirm] = useState<boolean>(false);
 	const { projects, setProjects } = useProjects();
-	const { setSelectedProjects } = useSelectedProjectsValue();
+	const { setSelectedProject } = useSelectedProjectValue();
 
 	const deleteProject = (docId: string): void => {
 		deleteDoc(doc(projectCollectionRef, docId)).then(() => {
 			setProjects([...projects]);
-			setSelectedProjects("INBOX");
+			setSelectedProject("INBOX");
 		});
 	};
 	return (
 		<>
-			<span className="sidebar__dot">.</span>
 			<span className="sidebar__project-name">{project.name}</span>
 			<span
 				className="sidebar__project-delete"
@@ -31,12 +30,13 @@ const IndividualProject: FC<Props> = ({ project }) => {
 			>
 				<FaTrash />{" "}
 				{showConfirm && (
-					<div className="project__delete-modal">
+					<div className="project-delete-modal">
 						<div className="project-delete-modal__inner">
 							<p>Are you sure you want to delete this project?</p>
 							<button type="button" onClick={() => deleteProject(project.docId)}>
-								Delete <span onClick={() => setShowConfirm(false)}>Cancel</span>
-							</button>
+								Delete
+							</button>{" "}
+							<span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
 						</div>
 					</div>
 				)}

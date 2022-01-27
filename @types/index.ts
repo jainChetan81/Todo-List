@@ -14,7 +14,11 @@ export type TaskContextType = {
 };
 export type ProjectContextType = {
 	projects: Projects[] | [];
-	setProjects: Dispatch<SetStateAction<[] | Projects[]>> | (() => void);
+	setProjects: Dispatch<SetStateAction<[] | Projects[]>>;
+};
+export type COLLATED_TASKS = {
+	key: string;
+	name: string;
 };
 export type Projects = {
 	docId: string;
