@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
-import type { FC } from "react";
+import { FC, useState } from "react";
 import { Header } from ".";
 import { ProjectsProvider, SelectedProjectProvider } from "../context";
 type LayoutType = {
@@ -9,27 +9,30 @@ type LayoutType = {
 	description?: string;
 	children?: any;
 };
-const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => (
-	<>
-		<Head>
-			<title>{title}</title>
-			<meta name="description" content={description} />
-			<meta name="keywords" content={keywords} />
-			<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-			<meta charSet="utf-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			<link rel="manifest" href="manifest.json" />
-		</Head>
-		<div>
-			<SelectedProjectProvider>
-				<ProjectsProvider>
-					<Header />
-					<main className="content">{children}</main>
-				</ProjectsProvider>
-			</SelectedProjectProvider>
-		</div>
-	</>
-);
+const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
+	const [darkMode, setDarkMode] = useState<boolean>(true);
+	return (
+		<>
+			<Head>
+				<title>{title}</title>
+				<meta name="description" content={description} />
+				<meta name="keywords" content={keywords} />
+				<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<link rel="manifest" href="manifest.json" />
+			</Head>
+			<div data-testid="application" className={darkMode ? "darkMode" : undefined}>
+				<SelectedProjectProvider>
+					<ProjectsProvider>
+						<Header darkMode={darkMode} setDarkMode={setDarkMode} />
+						<main className="content">{children}</main>
+					</ProjectsProvider>
+				</SelectedProjectProvider>
+			</div>
+		</>
+	);
+};
 Layout.defaultProps = {
 	description: "A Todo List app",
 	keywords: "[NextJS, Firebase, Typescript, ContextAPI, PWA, PostCSS]",
