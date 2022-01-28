@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
-import { Container, Layout } from "../components";
+import { Layout, Sidebar, Tasks } from "../components";
 
-const Home: NextPage = () => {
-	return (
-		<Layout title="Home">
-			<Container />
-		</Layout>
-	);
-};
+const Home: NextPage = () => (
+	<Layout title="Home">
+		<Sidebar />
+		<Tasks />
+	</Layout>
+);
 
 export default Home;

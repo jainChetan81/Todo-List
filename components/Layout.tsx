@@ -9,29 +9,27 @@ type LayoutType = {
 	description?: string;
 	children?: any;
 };
-const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
-	return (
-		<>
-			<Head>
-				<title>{title}</title>
-				<meta name="description" content={description} />
-				<meta name="keywords" content={keywords} />
-				<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<link rel="manifest" href="manifest.json" />
-			</Head>
-			<div>
-				<SelectedProjectProvider>
-					<ProjectsProvider>
-						<Header />
-						<main>{children}</main>
-					</ProjectsProvider>
-				</SelectedProjectProvider>
-			</div>
-		</>
-	);
-};
+const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => (
+	<>
+		<Head>
+			<title>{title}</title>
+			<meta name="description" content={description} />
+			<meta name="keywords" content={keywords} />
+			<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta charSet="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<link rel="manifest" href="manifest.json" />
+		</Head>
+		<div>
+			<SelectedProjectProvider>
+				<ProjectsProvider>
+					<Header />
+					<main className="content">{children}</main>
+				</ProjectsProvider>
+			</SelectedProjectProvider>
+		</div>
+	</>
+);
 Layout.defaultProps = {
 	description: "A Todo List app",
 	keywords: "[NextJS, Firebase, Typescript, ContextAPI, PWA, PostCSS]",
