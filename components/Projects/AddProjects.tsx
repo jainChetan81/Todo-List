@@ -1,6 +1,5 @@
 import { addDoc } from "firebase/firestore";
 import { ChangeEvent, FC, useState } from "react";
-import { Projects } from "../../@types";
 import { useProjectsValue } from "../../context";
 import { projectCollectionRef } from "../../firebase";
 import { generatePushId } from "../../helpers";

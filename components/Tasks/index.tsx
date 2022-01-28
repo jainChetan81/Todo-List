@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from "react";
-import { Checkbox } from ".";
-import { Tasks } from "../@types";
-import { collatedTask } from "../constants";
-import { useProjectsValue, useSelectedProjectValue } from "../context";
-import { collatedTaskExist, getCollatedTitle, getTitle } from "../helpers";
-import { useTasks } from "../hooks";
+import { FC } from "react";
+import { Checkbox } from "../";
+import { Tasks } from "../../@types";
+import { collatedTask } from "../../constants";
+import { useProjectsValue, useSelectedProjectValue } from "../../context";
+import { collatedTaskExist, getCollatedTitle, getTitle } from "../../helpers";
+import { useTasks } from "../../hooks";
+import AddTasks from "./AddTasks";
 
 const Tasks: FC = () => {
 	let projectName: string | undefined = "";
@@ -29,6 +30,7 @@ const Tasks: FC = () => {
 					</li>
 				))}
 			</ul>
+			<AddTasks showQuickAddTask={false} />
 		</div>
 	);
 };
