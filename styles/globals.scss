@@ -2,7 +2,7 @@
 // B = Block
 // E = Element
 // M = Modifier
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400,700,900&display=swap");
 html,
 body {
 	padding: 0;
@@ -24,6 +24,10 @@ html {
 $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
 $generic-bg: #db4c3f;
+button {
+	border: none;
+	background: none;
+}
 @mixin box-overlay() {
 	box-shadow: $generic-box-shadow;
 	position: absolute;
@@ -92,236 +96,7 @@ $generic-bg: #db4c3f;
 		@content;
 	}
 }
-// ================== dark mode ========================
-.darkMode {
-	header {
-		box-shadow: 0 1px 3px 0 rgba($color: #000000, $alpha: 0.15);
-		background-color: #282828;
-		border-color: transparent;
-	}
-}
 
-// ================== header ========================
-header {
-	background-color: $generic-bg;
-	border-bottom: 1px solid #ca2100;
-	transition: height 200ms ease-in;
-	box-shadow: 0 1px 2px rgba($color: #000000, $alpha: 0.15);
-	height: 44px;
-	z-index: 400;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	@include mq("900px") {
-		padding: 0px 10px;
-	}
-	nav {
-		display: grid;
-		align-items: center;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr;
-		gap: 0px;
-		max-width: 992px;
-		margin: auto;
-		height: 44px;
-	}
-	p,
-	li {
-		color: #fff;
-	}
-	div {
-		&.logo {
-			padding-left: 8px;
-			grid-area: 1/1;
-			img {
-				width: 24px;
-			}
-		}
-		&.settings {
-			grid-area: 1/2;
-			text-align: right;
-			ul {
-				float: right;
-			}
-			li {
-				@include va;
-				list-style-type: none;
-				cursor: pointer;
-				width: 30px;
-				height: 30px;
-				text-align: center;
-				vertical-align: middle;
-				float: left;
-				&:hover {
-					background-color: rgba(255, 255, 255, 0.2);
-					border-radius: 3px;
-				}
-				&.settings__add {
-					margin-right: 15px;
-					font-size: 30px;
-				}
-				&.settings__dark-mode svg {
-					width: 20px;
-					height: 20px;
-				}
-			}
-		}
-	}
-}
-
-// ========================= Sidebar =========================
-.sidebar {
-	@include no-select();
-	width: 266px;
-	height: calc(100vh);
-	padding-top: 74px;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	border-right: $generic-border;
-	background-color: #fafafa;
-	@include mq("900px") {
-		display: none;
-	}
-	li {
-		padding-left: 10px;
-		padding-right: 15px;
-		margin-block: 10px;
-		&:hover .sidebar__project-delete {
-			display: block;
-		}
-	}
-	&__project {
-		padding: 5px 0;
-		cursor: pointer;
-
-		&-delete {
-			margin-left: auto;
-			display: none;
-			svg {
-				color: #cacaca;
-			}
-		}
-		&.active,
-		&:hover {
-			font-weight: bold;
-			background-color: #fff;
-		}
-	}
-	&__projects {
-		padding-left: 3px;
-	}
-	&__project {
-		@include va("left");
-		&::before {
-			content: "•";
-			display: inline-block;
-			width: 1em;
-		}
-		&:nth-of-type(1n) {
-			&::before {
-				color: #6accbc;
-			}
-		}
-		&:nth-of-type(2n) {
-			&::before {
-				color: #fad003;
-			}
-		}
-		&:nth-of-type(3n) {
-			&::before {
-				color: #ffd8d5;
-			}
-		}
-		&:nth-of-type(4n) {
-			&::before {
-				color: #ff9932;
-			}
-		}
-		&:nth-of-type(5n) {
-			&::before {
-				color: #af38eb;
-			}
-		}
-	}
-	&__dot {
-		margin-right: 10px;
-		font-size: 30px;
-	}
-	&__middle {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		display: flex;
-		border-bottom: $generic-border;
-		padding-left: 10px;
-		cursor: pointer;
-		span {
-			color: #0000008a;
-			margin-right: 10px;
-			svg.hidden-projects {
-				transform: rotate(-90deg);
-			}
-		}
-		h2 {
-			margin: 0;
-			color: #333;
-			font-size: 15px;
-			font-weight: bold;
-			padding-bottom: 20px;
-			display: inline-block;
-		}
-	}
-	&__generic {
-		li {
-			padding: 10px 0px 10px 10px;
-			list-style-type: none;
-			color: #333;
-			display: flex;
-			cursor: pointer;
-			line-height: 1.5;
-			font-size: 15px;
-			span:first-of-type {
-				margin-right: 10px;
-				svg {
-					width: 18px;
-					height: 18px;
-					color: #555;
-				}
-			}
-			&.active,
-			&:hover {
-				font-weight: bold;
-				background-color: #fff;
-			}
-		}
-	}
-}
-// SHow confirm place
-.project-delete-modal {
-	position: relative;
-	&__inner {
-		@include box-overlay();
-		z-index: 99;
-		width: 200px;
-		padding: 10px;
-		top: 5px;
-		right: 0;
-		background-color: #fff;
-		p {
-			margin-top: 5px;
-			margin-bottom: 5px;
-			line-height: normal;
-			font-weight: normal;
-			font-size: 15px;
-		}
-		button {
-			@include btn("50px");
-		}
-		span {
-			@include cancel();
-			font-weight: normal;
-		}
-	}
-}
 // main content
 
 .content {
@@ -330,142 +105,11 @@ header {
 	grid-template-columns: 266px auto;
 	max-width: 992px;
 	margin: auto;
-}
-
-.tasks {
-	// width: 656px;
-	background-color: #fff;
-	// margin-left: 266px;
-	border-right: $generic-border;
-	min-height: 100vh;
-	padding-inline: 40px;
-	padding-block: 80px;
-	@include mq("900px") {
-		margin-left: 0;
-		width: auto;
-	}
-	h2 {
-		font-size: 20px;
-		font-weight: normal;
-		margin: 0px 20px 20px 0;
-	}
-	.add-tasks {
-		margin-top: 20px;
-	}
-	&__list li {
-		display: flex;
-		line-height: 18px;
-		color: #333;
-		padding-top: 10px;
-		font-size: 14px;
-		list-style-type: none;
-		border-bottom: 1px solid #f0f0f0;
-		.checkbox-holder {
-			margin-right: 20px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			line-height: 16px;
-			.checkbox {
-				cursor: pointer;
-				border-color: gray;
-				color: #343434;
-				height: 16px;
-				width: 16px;
-				display: block;
-				border: 1px solid gray;
-				border-radius: 16px;
-			}
-		}
+	@include mq("600px") {
+		grid-template-columns: 1fr;
 	}
 }
-// =================== ADD TASKS ====================
-.add-task {
-	&__overlay {
-		background: rgba(102, 102, 102, 0.5);
-		position: absolute;
-		margin: auto;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 2000;
-		-webkit-transition: opacity 0.2s ease-in;
-		transition: opacity 0.2s ease-in;
-		height: calc(100vh);
 
-		.add-task__main {
-			@include mq("900px") {
-				width: 90%;
-			}
-
-			overflow: visible;
-			margin-bottom: 20px;
-			margin-top: 55px;
-			border-radius: 5px;
-			background-color: white;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			padding: 20px 30px;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-
-			.header {
-				font-size: 13px;
-				margin-bottom: 20px;
-				float: left;
-			}
-		}
-
-		.add-task__cancel-x {
-			cursor: pointer;
-			color: gray;
-			float: right;
-			font-weight: bold;
-			font-size: 12px;
-		}
-	}
-
-	&__main {
-		position: relative;
-	}
-
-	&__project,
-	&__date {
-		cursor: pointer;
-		float: right;
-		color: gray;
-		margin: 20px 10px;
-	}
-
-	&__project {
-		margin-right: 0;
-	}
-
-	&__content {
-		width: 100%;
-		border: 1px solid #ddd;
-		background-color: white !important;
-		border-radius: 3px;
-		height: 35px;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	&__cancel,
-	&__submit {
-		@include no-select;
-	}
-
-	&__cancel {
-		@include cancel();
-	}
-
-	&__submit {
-		@include btn("90px");
-	}
-}
 
 .add-task__shallow,
 .add-project {
@@ -489,80 +133,9 @@ header {
 	margin-left: 15px;
 	cursor: pointer;
 }
-/* Task Date
-  ============================================ */
-.task-date {
-	@include box-overlay();
-	background-color: #fff;
-	width: 200px;
-	right: 0;
 
-	&__list li {
-		@include task-item();
 
-		padding: 10px;
-		width: 100%;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-align: center;
-		-ms-flex-align: center;
-		align-items: center;
-
-		span:first-of-type {
-			margin-right: 10px;
-
-			svg {
-				fill: grey;
-			}
-		}
-	}
-}
-/* Project Overlay
-  ============================================ */
-.project-overlay {
-	@include box-overlay();
-	background-color: white;
-
-	@include mq("900px") {
-		width: 200px;
-		right: 0;
-	}
-
-	&__list li {
-		@include task-item();
-
-		div:nth-child(1) {
-			width: 100%;
-			padding: 10px;
-		}
-	}
-}
-
-// =================== ADD PROJECT ====================
-.add-project {
-	padding-inline: 15px;
-	margin-top: 20px;
-	&__input {
-		margin-bottom: 20px;
-		padding: 10px;
-		background-color: #fff;
-		box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
-		border-radius: 3px;
-	}
-	&__name {
-		width: 100%;
-		border: 1px solid #ddd;
-		border-radius: 3px;
-		height: 35px;
-		padding-inline: 10px;
-	}
-	&__submit {
-		@include btn("50px");
-	}
-	&__cancel {
-		@include cancel();
-		border: none;
-		background: none;
-	}
-}
+@import "sidebar";
+@import "header";
+@import "project";
+@import "task";

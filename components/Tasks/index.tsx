@@ -15,7 +15,7 @@ const Tasks: FC = () => {
 	if (selectedProject && collatedTaskExist(selectedProject)) {
 		projectName = getTitle(projects, selectedProject)?.name;
 	}
-	if (collatedTaskExist(selectedProject) && projects && projects.length > 0 && selectedProject) {
+	if (projects && projects.length > 0 && selectedProject && collatedTaskExist(selectedProject)) {
 		projectName = getCollatedTitle(collatedTask, selectedProject)?.name;
 	}
 
