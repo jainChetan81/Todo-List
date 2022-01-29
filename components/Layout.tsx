@@ -34,7 +34,7 @@ const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
 	);
 };
 Layout.defaultProps = {
-	description: "A Todo List app",
+	description: "A Todo List to manage your tasks and projects",
 	keywords: "[NextJS, Firebase, Typescript, ContextAPI, PWA, PostCSS]",
 };
 Layout.propTypes = {
