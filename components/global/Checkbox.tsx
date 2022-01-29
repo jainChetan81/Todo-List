@@ -1,24 +1,27 @@
-import { doc, DocumentData, DocumentReference, setDoc } from "firebase/firestore";
+import { doc, DocumentData, DocumentReference, updateDoc } from "firebase/firestore";
 import { FC } from "react";
 import { firestore } from "../../firebase";
 type Props = {
 	id: string;
+	archived: boolean;
 };
-const Checkbox: FC<Props> = ({ id }) => {
+const Checkbox: FC<Props> = ({ id, archived: defaultArchived }) => {
 	const archivedTask = () => {
 		const documentRef: DocumentReference<DocumentData> = doc(firestore, "tasks", id);
-		setDoc(documentRef, { archived: true });
+		updateDoc(documentRef, { archived: !defaultArchived });
 	};
 	return (
-		<button
+		<input
+			type="checkbox"
+			name={`checkbox-${id}`}
+			id={`checkbox-${id}`}
+			onChange={() => archivedTask()}
+			onKeyDown={() => archivedTask()}
+			defaultChecked={defaultArchived}
+			aria-label="Archive Task"
 			className="checkbox-holder"
 			data-testid="checkbox-action"
-			onClick={() => archivedTask()}
-			onKeyDown={() => archivedTask()}
-			aria-label="Archive Task"
-		>
-			<span className="checkbox" />
-		</button>
+		/>
 	);
 };
 
