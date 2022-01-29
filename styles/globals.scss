@@ -217,27 +217,27 @@ header {
 			display: inline-block;
 			width: 1em;
 		}
-		&:nth-of-type(1) {
+		&:nth-of-type(1n) {
 			&::before {
 				color: #6accbc;
 			}
 		}
-		&:nth-of-type(2) {
+		&:nth-of-type(2n) {
 			&::before {
 				color: #fad003;
 			}
 		}
-		&:nth-of-type(3) {
+		&:nth-of-type(3n) {
 			&::before {
 				color: #ffd8d5;
 			}
 		}
-		&:nth-of-type(4) {
+		&:nth-of-type(4n) {
 			&::before {
 				color: #ff9932;
 			}
 		}
-		&:nth-of-type(5) {
+		&:nth-of-type(5n) {
 			&::before {
 				color: #af38eb;
 			}
@@ -303,7 +303,7 @@ header {
 		z-index: 99;
 		width: 200px;
 		padding: 10px;
-		top: 10px;
+		top: 5px;
 		right: 0;
 		background-color: #fff;
 		p {
@@ -424,7 +424,6 @@ header {
 			float: right;
 			font-weight: bold;
 			font-size: 12px;
-			margin-top: 10px;
 		}
 	}
 
@@ -563,5 +562,7 @@ header {
 	}
 	&__cancel {
 		@include cancel();
+		border: none;
+		background: none;
 	}
 }

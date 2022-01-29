@@ -1,6 +1,6 @@
 import { addDoc } from "firebase/firestore";
 import moment from "moment";
-import { ChangeEvent, Dispatch, FC, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
 import { FaRegCalendarAlt, FaRegListAlt, FaSkullCrossbones } from "react-icons/fa";
 import { useSelectedProjectValue } from "../../context";
 import { taskCollectionRef } from "../../firebase";
@@ -10,8 +10,8 @@ import TaskDate from "./TaskDate";
 type Props = {
 	showAddTaskMain?: boolean;
 	showShouldMain?: boolean;
-	showQuickAddTask?: boolean;
-	setShowQuickAddTask?: Dispatch<SetStateAction<boolean>>;
+	showQuickAddTask: boolean;
+	setShowQuickAddTask: Dispatch<SetStateAction<boolean>>;
 };
 const AddTasks: FC<Props> = ({
 	showAddTaskMain = true,
@@ -27,9 +27,9 @@ const AddTasks: FC<Props> = ({
 	const [showTaskDate, setShowTaskDate] = useState<boolean>(false);
 	const { selectedProject } = useSelectedProjectValue();
 
-	const addTask = () => {
+	const addTask = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		const projectId: string = project || selectedProject;
-		console.log("first");
 		let collatedDate: string = "";
 		if (projectId === "TODAY") {
 			collatedDate = moment().format("DD/MM/YYYY");
@@ -53,7 +53,7 @@ const AddTasks: FC<Props> = ({
 					setShowMain(false);
 					setShowProjectOverlay(false);
 					setShowTaskDate(false);
-					setShowQuickAddTask(false);
+					if (showQuickAddTask !== undefined) setShowQuickAddTask(false);
 				})
 				.catch((e: Error) => {
 					console.error("error", e.message);
@@ -73,7 +73,7 @@ const AddTasks: FC<Props> = ({
 				</div>
 			)}
 			{(showMain || showQuickAddTask) && (
-				<div className="add-task__main" data-testid="add-task-main">
+				<form className="add-task__main" data-testid="add-task-main" onSubmit={addTask}>
 					{showQuickAddTask && (
 						<div data-testid="quick-add-task">
 							<h2 className="header">Quick Add Task</h2>
@@ -102,13 +102,10 @@ const AddTasks: FC<Props> = ({
 						data-testid="add-task-content"
 						value={task}
 						onChange={(e: ChangeEvent<HTMLInputElement>) => setTask(e.currentTarget.value)}
+						required
+						minLength={5}
 					/>
-					<button
-						type="button"
-						className="add-task__submit"
-						data-testid="add-task-submit"
-						onClick={() => addTask()}
-					>
+					<button type="submit" className="add-task__submit" data-testid="add-task-submit">
 						Add Task
 					</button>
 					{!showQuickAddTask && (
@@ -137,7 +134,7 @@ const AddTasks: FC<Props> = ({
 					>
 						<FaRegCalendarAlt />
 					</span>
-				</div>
+				</form>
 			)}
 		</div>
 	);
