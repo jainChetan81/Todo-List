@@ -22,7 +22,7 @@ const IndividualProject: FC<Props> = ({ project }) => {
 	return (
 		<>
 			<span className="sidebar__project-name">{project.name}</span>
-			<span
+			<button
 				className="sidebar__project-delete"
 				data-testid="delete-project"
 				onClick={() => setShowConfirm(!showConfirm)}
@@ -35,12 +35,12 @@ const IndividualProject: FC<Props> = ({ project }) => {
 							<p>Are you sure you want to delete this project?</p>
 							<button type="button" onClick={() => deleteProject(project.docId)}>
 								Delete
-							</button>{" "}
-							<span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
+							</button>
+							<button onClick={() => setShowConfirm(!showConfirm)}>Cancel</button>
 						</div>
 					</div>
 				)}
-			</span>
+			</button>
 		</>
 	);
 };

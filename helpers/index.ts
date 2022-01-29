@@ -1,9 +1,8 @@
 import { COLLATED_TASKS, Projects } from "../@types";
-import { collatedTask } from "../constants";
+import collatedTask from "../constants";
 
-export const collatedTaskExist = (selectedProject: string | number) => {
-	return collatedTask.find((task) => task.key === selectedProject);
-};
+export const collatedTaskExist = (selectedProject: string | number) =>
+	collatedTask.find((task) => task.key === selectedProject);
 
 export const getTitle = (projects: Projects[], projectId: string | number): Projects | undefined =>
 	projects.find((project) => project.projectId === projectId);

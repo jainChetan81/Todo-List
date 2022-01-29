@@ -13,15 +13,20 @@ const ProjectOverlay: FC<Props> = ({ setProject, showProjectOverlay, setShowProj
 		<div className="project-overlay" data-testid="project-overlay">
 			<ul className="project-overlay__list">
 				{projects.map((project: Projects) => (
-					<li
-						key={project.projectId}
-						data-testid="project-overlay-action"
-						onClick={() => {
-							setProject(project.projectId);
-							setShowProjectOverlay(false);
-						}}
-					>
-						{project.name}
+					<li key={project.projectId}>
+						<button
+							data-testid="project-overlay-action"
+							onClick={() => {
+								setProject(project.projectId);
+								setShowProjectOverlay(false);
+							}}
+							onKeyDown={() => {
+								setProject(project.projectId);
+								setShowProjectOverlay(false);
+							}}
+						>
+							{project.name}
+						</button>
 					</li>
 				))}
 			</ul>

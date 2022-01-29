@@ -57,21 +57,21 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 	return (
 		<div className={showQuickAddTask ? "add-task add-task__overlay" : "add-task"} data-testid="add-task-comp">
 			{showAddTaskMain && (
-				<div
+				<button
 					className="add-task__shallow"
 					data-testid="show-main-action"
 					onClick={() => setShowMain(!showMain)}
 				>
 					<span className="add-task__plus">+</span>
 					<span className="add-task__text">Add Task</span>
-				</div>
+				</button>
 			)}
 			{(showMain || showQuickAddTask) && (
 				<form className="add-task__main" data-testid="add-task-main" onSubmit={addTask}>
 					{showQuickAddTask && (
 						<div data-testid="quick-add-task">
 							<h2 className="header">Quick Add Task</h2>
-							<span
+							<button
 								className="add-task__cancel-x"
 								data-testid="add-task-quick-cancel"
 								onClick={() => {
@@ -79,9 +79,14 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 									setShowProjectOverlay(false);
 									setShowQuickAddTask(false);
 								}}
+								onKeyDown={() => {
+									setShowMain(false);
+									setShowProjectOverlay(false);
+									setShowQuickAddTask(false);
+								}}
 							>
 								<FaSkullCrossbones />
-							</span>
+							</button>
 						</div>
 					)}
 					<ProjectOverlay
@@ -103,31 +108,37 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						Add Task
 					</button>
 					{!showQuickAddTask && (
-						<span
+						<button
 							className="add-task__cancel"
 							data-testid="add-task-main-cancel"
 							onClick={() => {
 								setShowMain(false);
 								setShowProjectOverlay(false);
 							}}
+							onKeyDown={() => {
+								setShowMain(false);
+								setShowProjectOverlay(false);
+							}}
 						>
 							Cancel
-						</span>
+						</button>
 					)}
-					<span
+					<button
 						className="add-task__project"
 						data-testid="show-project-overlay"
 						onClick={() => setShowProjectOverlay(!showProjectOverlay)}
+						onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
 					>
 						<FaRegListAlt />
-					</span>
-					<span
+					</button>
+					<button
 						className="add-task__date"
 						data-testid="add-task-date-overlay"
 						onClick={() => setShowTaskDate(!showTaskDate)}
+						onKeyDown={() => setShowTaskDate(!showTaskDate)}
 					>
 						<FaRegCalendarAlt />
-					</span>
+					</button>
 				</form>
 			)}
 		</div>

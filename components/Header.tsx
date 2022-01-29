@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { FaPizzaSlice } from "react-icons/fa";
 import AddTasks from "./Tasks/AddTasks";
@@ -11,23 +12,32 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 		<header className="header" data-testid="header">
 			<nav>
 				<div className="logo">
-					<img src="/images/logo.png" alt="Todo Logo" />
+					<Image
+						src={`${process.env.NEXT_PUBLIC_IMAGEKIT_URL}/todo?tr=w-30,h-30`}
+						width={30}
+						height={30}
+						alt="todo list logo"
+					/>
 				</div>
 				<div className="settings">
 					<ul>
-						<li
-							data-test-id="quick-add-task-action"
-							className="settings__add"
-							onClick={() => setShowQuickAddTask(!showQuickAddTask)}
-						>
-							+
+						<li className="settings__add">
+							<button
+								data-test-id="quick-add-task-action"
+								onClick={() => setShowQuickAddTask(!showQuickAddTask)}
+								onKeyDown={() => setShowQuickAddTask(!showQuickAddTask)}
+							>
+								+
+							</button>
 						</li>
-						<li
-							data-test-id="dark-mode-action"
-							className="settings__dark-mode"
-							onClick={() => setDarkMode(!darkMode)}
-						>
-							<FaPizzaSlice />
+						<li className="settings__dark-mode">
+							<button
+								data-test-id="dark-mode-action"
+								onClick={() => setDarkMode(!darkMode)}
+								onKeyDown={() => setDarkMode(!darkMode)}
+							>
+								<FaPizzaSlice />
+							</button>
 						</li>
 					</ul>
 				</div>

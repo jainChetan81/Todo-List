@@ -10,7 +10,14 @@ const Checkbox: FC<Props> = ({ id }) => {
 		setDoc(documentRef, { archived: true });
 	};
 	return (
-		<div className="checkbox-holder" data-testid="checkbox-action" onClick={() => archivedTask()}>
+		<div
+			className="checkbox-holder"
+			data-testid="checkbox-action"
+			role="button"
+			onClick={() => archivedTask()}
+			onKeyDown={() => archivedTask()}
+			tabIndex={0}
+		>
 			<span className="checkbox" />
 		</div>
 	);

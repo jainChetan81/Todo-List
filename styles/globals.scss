@@ -20,6 +20,7 @@ html {
 *::before,
 *::after {
 	box-sizing: initial;
+	outline: 1px solid green;
 }
 $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
@@ -27,6 +28,8 @@ $generic-bg: #db4c3f;
 button {
 	border: none;
 	background: none;
+	background-color: transparent;
+	cursor: pointer;
 }
 @mixin box-overlay() {
 	box-shadow: $generic-box-shadow;
@@ -110,7 +113,6 @@ button {
 	}
 }
 
-
 .add-task__shallow,
 .add-project {
 	@include no-select;
@@ -133,7 +135,6 @@ button {
 	margin-left: 15px;
 	cursor: pointer;
 }
-
 
 @import "sidebar";
 @import "header";

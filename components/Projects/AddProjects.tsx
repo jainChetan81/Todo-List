@@ -60,10 +60,12 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 					</button>
 				</form>
 			)}
-			<span className="add-project__plus">+</span>
-			<span data-testid="add-project-action" className="add-project__text" onClick={() => setShow(!show)}>
-				Add Project
-			</span>
+			<button type="button" onClick={() => setShow(!show)} onKeyDown={() => setShow(!show)} tabIndex={0}>
+				<span className="add-project__plus">+</span>
+				<span data-testid="add-project-action" className="add-project__text">
+					Add Project
+				</span>
+			</button>
 		</div>
 	);
 };

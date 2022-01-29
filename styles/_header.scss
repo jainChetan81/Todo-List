@@ -65,10 +65,14 @@ header {
 				&.settings__add {
 					margin-right: 15px;
 					font-size: 30px;
+					button {
+						color: #fff;
+					}
 				}
 				&.settings__dark-mode svg {
 					width: 20px;
 					height: 20px;
+					fill: #fff;
 				}
 			}
 		}

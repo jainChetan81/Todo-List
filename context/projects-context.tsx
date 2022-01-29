@@ -1,5 +1,5 @@
 import { Context, createContext, useContext } from "react";
-import { ProjectContextType, Projects } from "../@types";
+import { ProjectContextType } from "../@types";
 import { useProjects } from "../hooks";
 
 export const ProjectsContext: Context<any> = createContext([[], () => {}]);

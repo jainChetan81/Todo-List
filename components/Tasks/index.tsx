@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Checkbox } from "../";
 import { Tasks } from "../../@types";
-import { collatedTask } from "../../constants";
+import collatedTask from "../../constants";
 import { useProjectsValue, useSelectedProjectValue } from "../../context";
 import { collatedTaskExist, getCollatedTitle, getTitle } from "../../helpers";
 import { useTasks } from "../../hooks";
