@@ -24,6 +24,7 @@ const ProjectOverlay: FC<Props> = ({ setProject, showProjectOverlay, setShowProj
 								setProject(project.projectId);
 								setShowProjectOverlay(false);
 							}}
+							aria-label="Choose Project from Quick Add Task"
 						>
 							{project.name}
 						</button>

@@ -18,8 +18,32 @@ header {
 	position: fixed;
 	top: 0;
 	width: 100%;
+	position: relative;
 	@include mq("900px") {
 		padding: 0px 10px;
+	}
+
+	.logo__handle {
+		display: none;
+		color: #fff;
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+		align-items: center;
+		cursor: pointer;
+		z-index: 30;
+		top: 0rem;
+		left: 0.5rem;
+		position: fixed;
+		overflow: visible;
+		text-transform: none;
+		height: 2.5rem;
+		width: 2.5rem;
+		@include mq("500px") {
+			display: flex;
+		}
+		svg {
+			fill: #fff;
+		}
 	}
 	nav {
 		display: grid;
@@ -40,7 +64,10 @@ header {
 			padding-left: 8px;
 			grid-area: 1/1;
 			img {
-				width: 24px;
+				width: 30px;
+			}
+			@include mq("500px") {
+				margin-left: 3rem;
 			}
 		}
 		&.settings {

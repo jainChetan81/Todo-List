@@ -61,6 +61,8 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 					className="add-task__shallow"
 					data-testid="show-main-action"
 					onClick={() => setShowMain(!showMain)}
+					onKeyDown={() => setShowMain(!showMain)}
+					aria-label="Add Task"
 				>
 					<span className="add-task__plus">+</span>
 					<span className="add-task__text">Add Task</span>
@@ -84,6 +86,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 									setShowProjectOverlay(false);
 									setShowQuickAddTask(false);
 								}}
+								aria-label="Cancel Add Task"
 							>
 								<FaSkullCrossbones />
 							</button>
@@ -104,7 +107,12 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						required
 						minLength={5}
 					/>
-					<button type="submit" className="add-task__submit" data-testid="add-task-submit">
+					<button
+						type="submit"
+						className="add-task__submit"
+						data-testid="add-task-submit"
+						aria-label="Add Task"
+					>
 						Add Task
 					</button>
 					{!showQuickAddTask && (
@@ -119,6 +127,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 								setShowMain(false);
 								setShowProjectOverlay(false);
 							}}
+							aria-label="Cancel Add Task"
 						>
 							Cancel
 						</button>
@@ -128,6 +137,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						data-testid="show-project-overlay"
 						onClick={() => setShowProjectOverlay(!showProjectOverlay)}
 						onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
+						aria-label="Add Task"
 					>
 						<FaRegListAlt />
 					</button>
@@ -136,6 +146,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						data-testid="add-task-date-overlay"
 						onClick={() => setShowTaskDate(!showTaskDate)}
 						onKeyDown={() => setShowTaskDate(!showTaskDate)}
+						aria-label="Cancel Add Task"
 					>
 						<FaRegCalendarAlt />
 					</button>

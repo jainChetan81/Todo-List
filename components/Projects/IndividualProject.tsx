@@ -27,16 +27,23 @@ const IndividualProject: FC<Props> = ({ project }) => {
 				data-testid="delete-project"
 				onClick={() => setShowConfirm(!showConfirm)}
 				onKeyDown={() => setShowConfirm(!showConfirm)}
+				aria-label="Delete Project"
 			>
 				<FaTrash />{" "}
 				{showConfirm && (
 					<div className="project-delete-modal">
 						<div className="project-delete-modal__inner">
 							<p>Are you sure you want to delete this project?</p>
-							<button type="button" onClick={() => deleteProject(project.docId)}>
+							<button
+								type="button"
+								onClick={() => deleteProject(project.docId)}
+								aria-label="Confirm Delete"
+							>
 								Delete
 							</button>
-							<button onClick={() => setShowConfirm(!showConfirm)}>Cancel</button>
+							<button onClick={() => setShowConfirm(!showConfirm)} aria-label="Cancel Delete">
+								Cancel
+							</button>
 						</div>
 					</div>
 				)}

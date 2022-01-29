@@ -29,6 +29,7 @@ const Projects: FC<Props> = ({ activeNull = null }) => {
 							setSelectedProject(project.projectId);
 							setActive(project.projectId);
 						}}
+						aria-label={`Show ${project.name}'s Tasks`}
 					>
 						<IndividualProject project={project} />
 					</button>

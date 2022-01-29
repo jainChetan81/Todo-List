@@ -22,6 +22,7 @@ const TaskDate: FC<Props> = ({ setTaskDate, showTaskDate = false, setShowTaskDat
 							setShowTaskDate(false);
 							setTaskDate(moment().format("DD/MM/YYYY"));
 						}}
+						aria-label="Select Today Project from Quick Add Task"
 					>
 						<span>
 							<FaSpaceShuttle />
@@ -40,6 +41,7 @@ const TaskDate: FC<Props> = ({ setTaskDate, showTaskDate = false, setShowTaskDat
 							setShowTaskDate(false);
 							setTaskDate(moment().add(1, "day").format("DD/MM/YYYY"));
 						}}
+						aria-label="Select Tomorrow Project from Quick Add Task"
 					>
 						<span>
 							<FaSun />
@@ -58,6 +60,7 @@ const TaskDate: FC<Props> = ({ setTaskDate, showTaskDate = false, setShowTaskDat
 							setTaskDate(moment().add(1, "day").format("DD/MM/YYYY"));
 						}}
 						data-testid="task-date-next-week"
+						aria-label="Select Next 7 Days Project from Quick Add Task"
 					>
 						<span>
 							<FaRegPaperPlane />

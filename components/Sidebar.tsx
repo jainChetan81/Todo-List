@@ -7,35 +7,9 @@ import AddProjects from "./Projects/AddProjects";
 const Sidebar: FC = () => {
 	const { setSelectedProject } = useSelectedProjectValue();
 	const [active, setActive] = useState<string>("inbox");
-	const [showSidebar, setShowSidebar] = useState<boolean>(true);
 	const [showProjects, setShowProjects] = useState<boolean>(true);
 	return (
 		<aside className="sidebar" data-testid="sidebar">
-			<button className="sidebar__handle" onClick={() => setShowSidebar(!showSidebar)}>
-				{showSidebar ? (
-					<svg className="hamburger" fill="#000" viewBox="0 0 100 80" width="40" height="25">
-						<rect width="100" height="10"></rect>
-						<rect y="30" width="100" height="10"></rect>
-						<rect y="60" width="100" height="10"></rect>
-					</svg>
-				) : (
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						aria-hidden="true"
-						className="cross"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M6 18L18 6M6 6l12 12"
-						></path>
-					</svg>
-				)}
-			</button>
 			<ul className="sidebar__generic">
 				<li className={active === "inbox" ? "active" : undefined}>
 					<button
@@ -48,6 +22,7 @@ const Sidebar: FC = () => {
 							setActive("inbox");
 							setSelectedProject("INBOX");
 						}}
+						aria-label="Show Inbox Tasks"
 					>
 						<span>
 							<FaInbox />
@@ -66,6 +41,7 @@ const Sidebar: FC = () => {
 							setActive("today");
 							setSelectedProject("TODAY");
 						}}
+						aria-label="Show Today Tasks"
 					>
 						<span>
 							<FaRegCalendar />
@@ -80,6 +56,11 @@ const Sidebar: FC = () => {
 							setActive("next_7");
 							setSelectedProject("NEXT_7");
 						}}
+						onKeyDown={() => {
+							setActive("next_7");
+							setSelectedProject("NEXT_7");
+						}}
+						aria-label="Show Next 7 Days Tasks"
 					>
 						<span>
 							<FaRegCalendarAlt />
@@ -89,7 +70,11 @@ const Sidebar: FC = () => {
 				</li>
 			</ul>
 			<div className="sidebar__middle">
-				<button onClick={() => setShowProjects(!showProjects)} onKeyDown={() => setShowProjects(!showProjects)}>
+				<button
+					onClick={() => setShowProjects(!showProjects)}
+					onKeyDown={() => setShowProjects(!showProjects)}
+					aria-label="Show Custom Projects"
+				>
 					<span>
 						<FaChevronDown className={!showProjects ? "hidden-projects" : undefined} />
 					</span>
