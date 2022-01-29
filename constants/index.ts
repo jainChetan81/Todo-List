@@ -1,4 +1,6 @@
-export const collatedTask = [
+import { COLLATED_TASKS } from "../@types";
+
+const collatedTask: COLLATED_TASKS[] = [
 	{
 		key: "INBOX",
 		name: "INBOX",
@@ -12,3 +14,4 @@ export const collatedTask = [
 		name: "NEXT 7 DAYS",
 	},
 ];
+export default collatedTask;

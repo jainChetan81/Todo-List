@@ -1,11 +1,26 @@
 {
-	"extends": ["next/core-web-vitals"],
+	"extends": ["next/core-web-vitals", "plugin:jsx-a11y/recommended"],
+	"env": {
+		"browser": true,
+		"node": true,
+		"jest": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 8,
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"impliedStrict": true,
+			"classes": true
+		}
+	},
 	"rules": {
+		"react/prop-types": 0,
 		"react-hooks/rules-of-hooks": "error",
 		"@next/next/no-document-import-in-page": "off",
 		"no-debugger": 0,
 		"no-alert": 0,
 		"no-unused-vars": 1,
+
 		"prefer-const": [
 			"error",
 			{
