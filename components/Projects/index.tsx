@@ -18,16 +18,21 @@ const Projects: FC<Props> = ({ activeNull = null }) => {
 					data-docid={project.docId}
 					data-testid="project-action"
 					className={`${active === project.projectId ? "active" : ""} sidebar__project`}
-					onClick={() => {
-						setSelectedProject(project.projectId);
-						setActive(project.projectId);
-					}}
-					onKeyDown={() => {
-						setSelectedProject(project.projectId);
-						setActive(project.projectId);
-					}}
 				>
-					<IndividualProject project={project} />
+					<button
+						type="button"
+						onClick={() => {
+							setSelectedProject(project.projectId);
+							setActive(project.projectId);
+						}}
+						onKeyDown={() => {
+							setSelectedProject(project.projectId);
+							setActive(project.projectId);
+						}}
+						aria-label={`Show ${project.name}'s Tasks`}
+					>
+						<IndividualProject project={project} />
+					</button>
 				</li>
 			))}
 		</ul>

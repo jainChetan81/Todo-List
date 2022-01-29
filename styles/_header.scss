@@ -1,0 +1,107 @@
+// ================== dark mode ========================
+.darkMode {
+	header {
+		box-shadow: 0 1px 3px 0 rgba($color: #000000, $alpha: 0.15);
+		background-color: #282828;
+		border-color: transparent;
+	}
+}
+
+// ================== header ========================
+header {
+	background-color: $generic-bg;
+	border-bottom: 1px solid #ca2100;
+	transition: height 200ms ease-in;
+	box-shadow: 0 1px 2px rgba($color: #000000, $alpha: 0.15);
+	height: 44px;
+	z-index: 400;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	position: relative;
+	@include mq("900px") {
+		padding: 0px 10px;
+	}
+
+	.logo__handle {
+		display: none;
+		color: #fff;
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+		align-items: center;
+		cursor: pointer;
+		z-index: 30;
+		top: 0rem;
+		left: 0.5rem;
+		position: fixed;
+		overflow: visible;
+		text-transform: none;
+		height: 2.5rem;
+		width: 2.5rem;
+		@include mq("500px") {
+			display: flex;
+		}
+		svg {
+			fill: #fff;
+		}
+	}
+	nav {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+		gap: 0px;
+		max-width: 992px;
+		margin: auto;
+		height: 44px;
+	}
+	p,
+	li {
+		color: #fff;
+	}
+	div {
+		&.logo {
+			padding-left: 8px;
+			grid-area: 1/1;
+			img {
+				width: 30px;
+			}
+			@include mq("500px") {
+				margin-left: 3rem;
+			}
+		}
+		&.settings {
+			grid-area: 1/2;
+			text-align: right;
+			ul {
+				float: right;
+			}
+			li {
+				@include va;
+				list-style-type: none;
+				cursor: pointer;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				vertical-align: middle;
+				float: left;
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.2);
+					border-radius: 3px;
+				}
+				&.settings__add {
+					margin-right: 15px;
+					font-size: 30px;
+					button {
+						color: #fff;
+					}
+				}
+				&.settings__dark-mode svg {
+					width: 20px;
+					height: 20px;
+					fill: #fff;
+				}
+			}
+		}
+	}
+}

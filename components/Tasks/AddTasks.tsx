@@ -57,21 +57,23 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 	return (
 		<div className={showQuickAddTask ? "add-task add-task__overlay" : "add-task"} data-testid="add-task-comp">
 			{showAddTaskMain && (
-				<div
+				<button
 					className="add-task__shallow"
 					data-testid="show-main-action"
 					onClick={() => setShowMain(!showMain)}
+					onKeyDown={() => setShowMain(!showMain)}
+					aria-label="Add Task"
 				>
 					<span className="add-task__plus">+</span>
 					<span className="add-task__text">Add Task</span>
-				</div>
+				</button>
 			)}
 			{(showMain || showQuickAddTask) && (
 				<form className="add-task__main" data-testid="add-task-main" onSubmit={addTask}>
 					{showQuickAddTask && (
 						<div data-testid="quick-add-task">
 							<h2 className="header">Quick Add Task</h2>
-							<span
+							<button
 								className="add-task__cancel-x"
 								data-testid="add-task-quick-cancel"
 								onClick={() => {
@@ -79,9 +81,15 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 									setShowProjectOverlay(false);
 									setShowQuickAddTask(false);
 								}}
+								onKeyDown={() => {
+									setShowMain(false);
+									setShowProjectOverlay(false);
+									setShowQuickAddTask(false);
+								}}
+								aria-label="Cancel Add Task"
 							>
 								<FaSkullCrossbones />
-							</span>
+							</button>
 						</div>
 					)}
 					<ProjectOverlay
@@ -99,35 +107,49 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						required
 						minLength={5}
 					/>
-					<button type="submit" className="add-task__submit" data-testid="add-task-submit">
+					<button
+						type="submit"
+						className="add-task__submit"
+						data-testid="add-task-submit"
+						aria-label="Add Task"
+					>
 						Add Task
 					</button>
 					{!showQuickAddTask && (
-						<span
+						<button
 							className="add-task__cancel"
 							data-testid="add-task-main-cancel"
 							onClick={() => {
 								setShowMain(false);
 								setShowProjectOverlay(false);
 							}}
+							onKeyDown={() => {
+								setShowMain(false);
+								setShowProjectOverlay(false);
+							}}
+							aria-label="Cancel Add Task"
 						>
 							Cancel
-						</span>
+						</button>
 					)}
-					<span
+					<button
 						className="add-task__project"
 						data-testid="show-project-overlay"
 						onClick={() => setShowProjectOverlay(!showProjectOverlay)}
+						onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
+						aria-label="Add Task"
 					>
 						<FaRegListAlt />
-					</span>
-					<span
+					</button>
+					<button
 						className="add-task__date"
 						data-testid="add-task-date-overlay"
 						onClick={() => setShowTaskDate(!showTaskDate)}
+						onKeyDown={() => setShowTaskDate(!showTaskDate)}
+						aria-label="Cancel Add Task"
 					>
 						<FaRegCalendarAlt />
-					</span>
+					</button>
 				</form>
 			)}
 		</div>

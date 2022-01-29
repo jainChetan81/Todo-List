@@ -46,8 +46,9 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 						placeholder="Name your project"
 						required
 						minLength={5}
+						aria-label="Project Name"
 					/>
-					<button className="add-project__submit" type="submit">
+					<button className="add-project__submit" type="submit" aria-label="Add Project">
 						Add Project
 					</button>
 					<button
@@ -55,15 +56,23 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 						className="add-project__cancel"
 						onClick={() => setShow(false)}
 						data-testid="hide-project__overlay"
+						aria-label="Cancel Adding project"
 					>
 						Cancel
 					</button>
 				</form>
 			)}
-			<span className="add-project__plus">+</span>
-			<span data-testid="add-project-action" className="add-project__text" onClick={() => setShow(!show)}>
-				Add Project
-			</span>
+			<button
+				type="button"
+				onClick={() => setShow(!show)}
+				onKeyDown={() => setShow(!show)}
+				aria-label="Add Project"
+			>
+				<span className="add-project__plus">+</span>
+				<span data-testid="add-project-action" className="add-project__text">
+					Add Project
+				</span>
+			</button>
 		</div>
 	);
 };

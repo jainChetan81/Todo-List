@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Checkbox } from "../";
 import { Tasks } from "../../@types";
-import { collatedTask } from "../../constants";
+import collatedTask from "../../constants";
 import { useProjectsValue, useSelectedProjectValue } from "../../context";
 import { collatedTaskExist, getCollatedTitle, getTitle } from "../../helpers";
 import { useTasks } from "../../hooks";
@@ -15,7 +15,7 @@ const Tasks: FC = () => {
 	if (selectedProject && collatedTaskExist(selectedProject)) {
 		projectName = getTitle(projects, selectedProject)?.name;
 	}
-	if (collatedTaskExist(selectedProject) && projects && projects.length > 0 && selectedProject) {
+	if (projects && projects.length > 0 && selectedProject && collatedTaskExist(selectedProject)) {
 		projectName = getCollatedTitle(collatedTask, selectedProject)?.name;
 	}
 
