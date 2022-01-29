@@ -30,7 +30,7 @@ const Tasks: FC = () => {
 					</li>
 				))}
 			</ul>
-			<AddTasks showQuickAddTask={false} />
+			<AddTasks showQuickAddTask={false} setShowQuickAddTask={() => {}} />
 		</div>
 	);
 };
