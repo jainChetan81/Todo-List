@@ -1,28 +1,27 @@
 import { addDoc } from "firebase/firestore";
 import moment from "moment";
-import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { FaRegCalendarAlt, FaRegListAlt, FaSkullCrossbones } from "react-icons/fa";
+import { Input } from "..";
 import { useSelectedProjectValue } from "../../context";
 import { taskCollectionRef } from "../../firebase";
 import ProjectOverlay from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
-
 type Props = {
 	showAddTaskMain?: boolean;
 	showQuickAddTask: boolean;
 	setShowQuickAddTask: Dispatch<SetStateAction<boolean>>;
 };
 const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false, setShowQuickAddTask = () => {} }) => {
-	const [task, setTask] = useState<string>("");
 	const [taskDate, setTaskDate] = useState<string>("");
 	const [project, setProject] = useState<string>("");
+	const [message, setMessage] = useState<string>("");
 	const [showMain, setShowMain] = useState<boolean>(false);
 	const [showProjectOverlay, setShowProjectOverlay] = useState<boolean>(false);
 	const [showTaskDate, setShowTaskDate] = useState<boolean>(false);
 	const { selectedProject } = useSelectedProjectValue();
 
-	const addTask = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+	const addTask = () => {
 		const projectId: string = project || selectedProject;
 		let collatedDate: string = "";
 		if (projectId === "TODAY") {
@@ -31,17 +30,17 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 			collatedDate = moment().add(7, "days").format("DD/MM/YYYY");
 		}
 		return (
-			task &&
+			message &&
 			projectId &&
 			addDoc(taskCollectionRef, {
 				archived: false,
 				projectId,
-				task,
+				task: message,
 				date: collatedDate || taskDate,
 				userId: "UESs1wMq3aMShh6543F9",
 			})
 				.then(() => {
-					setTask("");
+					setMessage("");
 					setProject("");
 					setTaskDate("");
 					setShowMain(false);
@@ -61,7 +60,6 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 					className="add-task__shallow"
 					data-testid="show-main-action"
 					onClick={() => setShowMain(!showMain)}
-					onKeyDown={() => setShowMain(!showMain)}
 					aria-label="Add Task"
 				>
 					<span className="add-task__plus">+</span>
@@ -69,7 +67,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 				</button>
 			)}
 			{(showMain || showQuickAddTask) && (
-				<form className="add-task__main" data-testid="add-task-main" onSubmit={addTask}>
+				<form className="add-task__main" data-testid="add-task-main" onSubmit={(e) => e.preventDefault()}>
 					{showQuickAddTask && (
 						<div data-testid="quick-add-task">
 							<h2 className="header">Quick Add Task</h2>
@@ -77,11 +75,6 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 								className="add-task__cancel-x"
 								data-testid="add-task-quick-cancel"
 								onClick={() => {
-									setShowMain(false);
-									setShowProjectOverlay(false);
-									setShowQuickAddTask(false);
-								}}
-								onKeyDown={() => {
 									setShowMain(false);
 									setShowProjectOverlay(false);
 									setShowQuickAddTask(false);
@@ -97,21 +90,14 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						showProjectOverlay={showProjectOverlay}
 						setShowProjectOverlay={setShowProjectOverlay}
 					/>
-					<TaskDate setTaskDate={setTaskDate} showTaskDate={showTaskDate} setShowTaskDate={setShowTaskDate} />
-					<input
-						type="text"
-						className="add-task__content"
-						data-testid="add-task-content"
-						value={task}
-						onChange={(e: ChangeEvent<HTMLInputElement>) => setTask(e.currentTarget.value)}
-						required
-						minLength={5}
-					/>
+					<TaskDate setTaskDate={setTaskDate} showTaskDate={showTaskDate} setShowTaskDate={setShowTaskDate} />{" "}
+					<Input message={message} setMessage={setMessage} testid="add-message-content" />
 					<button
 						type="submit"
 						className="add-task__submit"
 						data-testid="add-task-submit"
 						aria-label="Add Task"
+						onClick={addTask}
 					>
 						Add Task
 					</button>
@@ -120,10 +106,6 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 							className="add-task__cancel"
 							data-testid="add-task-main-cancel"
 							onClick={() => {
-								setShowMain(false);
-								setShowProjectOverlay(false);
-							}}
-							onKeyDown={() => {
 								setShowMain(false);
 								setShowProjectOverlay(false);
 							}}
