@@ -2,7 +2,7 @@
 // B = Block
 // E = Element
 // M = Modifier
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
 html,
 body {
 	padding: 0;
@@ -20,7 +20,7 @@ html {
 *::before,
 *::after {
 	box-sizing: initial;
-	outline: 1px solid green;
+	// outline: 1px solid green;
 }
 $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
@@ -104,12 +104,38 @@ button {
 
 .content {
 	display: grid;
-	align-items: center;
-	grid-template-columns: 266px auto;
+	grid-template-columns: 266px 1fr;
 	max-width: 992px;
 	margin: auto;
 	@include mq("600px") {
 		grid-template-columns: 1fr;
+	}
+}
+
+//emoji picker input
+.input-element {
+	height: 35px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border: 2px solid #ddd;
+	border-radius: 2px;
+	justify-content: flex-start;
+	.add-message__content {
+		width: calc(100% - 32px);
+		height: 100%;
+		border: none;
+		background-color: white !important;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	label {
+		background-color: #cacbcd;
+		padding: 5px;
+		.svg {
+			height: 20px;
+			width: 30px;
+		}
 	}
 }
 
