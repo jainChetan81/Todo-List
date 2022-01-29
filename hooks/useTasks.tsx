@@ -12,7 +12,7 @@ const useTasks = (selectedProject: string | number) => {
 	useEffect(() => {
 		const fetchTasks = () => {
 			const queryConsUserId: QueryConstraint = where("userId", "==", "UESs1wMq3aMShh6543F9");
-			const queryConsProjectId: QueryConstraint = where("projectId", "==", "G3eOFfoP0iZAAzsFdQe5");
+			const queryConsProjectId: QueryConstraint = where("projectId", "==", selectedProject);
 			const queryConsDate: QueryConstraint = where("date", "==", moment().format("DD/MM/YYYY"));
 			let finalQuery: Query<DocumentData> = query(taskCollectionRef, queryConsUserId);
 			if (selectedProject && !collatedTaskExist(selectedProject)) {

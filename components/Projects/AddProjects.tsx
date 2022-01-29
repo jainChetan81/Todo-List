@@ -1,5 +1,6 @@
 import { addDoc } from "firebase/firestore";
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { Projects } from "../../@types";
 import { useProjectsValue } from "../../context";
 import { projectCollectionRef } from "../../firebase";
 import { generatePushId } from "../../helpers";
@@ -12,14 +13,18 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	const [projectName, setProjectName] = useState<string>("");
 	const projectId = generatePushId();
 	const { projects, setProjects } = useProjectsValue();
-	const addProject = () => {
+	const addProject = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		addDoc(projectCollectionRef, {
 			projectId,
 			name: projectName,
 			userId: "UESs1wMq3aMShh6543F9",
 		})
 			.then(() => {
-				setProjects([]);
+				setProjects([
+					...projects,
+					{ projectId, name: projectName, userId: "UESs1wMq3aMShh6543F9" } as Projects,
+				]);
 				setProjectName("");
 				setShow(false);
 			})
@@ -30,7 +35,7 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	return (
 		<div className="add-project" data-testid="add-project">
 			{show && (
-				<div className="add-project__input">
+				<form className="add-project__input" onSubmit={addProject}>
 					<input
 						type="text"
 						name="name"
@@ -39,18 +44,21 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 						data-testid="project-name"
 						className="add-project__name"
 						placeholder="Name your project"
+						required
+						minLength={5}
 					/>
-					<button className="add-project__submit" type="submit" onClick={() => addProject()}>
+					<button className="add-project__submit" type="submit">
 						Add Project
 					</button>
-					<span
+					<button
+						type="button"
 						className="add-project__cancel"
-						data-testid="hide-project__overlay"
 						onClick={() => setShow(false)}
+						data-testid="hide-project__overlay"
 					>
 						Cancel
-					</span>
-				</div>
+					</button>
+				</form>
 			)}
 			<span className="add-project__plus">+</span>
 			<span data-testid="add-project-action" className="add-project__text" onClick={() => setShow(!show)}>

@@ -1,11 +1,11 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { FaPizzaSlice } from "react-icons/fa";
+import AddTasks from "./Tasks/AddTasks";
 type Props = {
 	darkMode: boolean;
 	setDarkMode: Dispatch<SetStateAction<boolean>>;
 };
 const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
-	const [shouldShowMain, setShouldShowMain] = useState<boolean>(false);
 	const [showQuickAddTask, setShowQuickAddTask] = useState<boolean>(false);
 	return (
 		<header className="header" data-testid="header">
@@ -15,7 +15,11 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 				</div>
 				<div className="settings">
 					<ul>
-						<li data-test-id="quick-add-task-action" className="settings__add">
+						<li
+							data-test-id="quick-add-task-action"
+							className="settings__add"
+							onClick={() => setShowQuickAddTask(!showQuickAddTask)}
+						>
 							+
 						</li>
 						<li
@@ -28,6 +32,11 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 					</ul>
 				</div>
 			</nav>
+			<AddTasks
+				showAddTaskMain={false}
+				showQuickAddTask={showQuickAddTask}
+				setShowQuickAddTask={setShowQuickAddTask}
+			/>
 		</header>
 	);
 };

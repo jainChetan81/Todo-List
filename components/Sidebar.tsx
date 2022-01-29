@@ -52,12 +52,12 @@ const Sidebar: FC = () => {
 				</li>
 			</ul>
 			<div className="sidebar__middle" onClick={() => setShowProjects(!showProjects)}>
-				<span>
+				<div>
 					<span>
 						<FaChevronDown className={!showProjects ? "hidden-projects" : undefined} />
 					</span>
 					<h2>Projects</h2>
-				</span>
+				</div>
 			</div>
 			<ul className="sidebar__projects">{showProjects && <Projects />}</ul>
 			<AddProjects />
