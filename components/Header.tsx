@@ -6,7 +6,6 @@ type Props = {
 	setDarkMode: Dispatch<SetStateAction<boolean>>;
 };
 const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
-	const [shouldShowMain, setShouldShowMain] = useState<boolean>(false);
 	const [showQuickAddTask, setShowQuickAddTask] = useState<boolean>(false);
 	return (
 		<header className="header" data-testid="header">
@@ -35,7 +34,6 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 			</nav>
 			<AddTasks
 				showAddTaskMain={false}
-				showShouldMain={shouldShowMain}
 				showQuickAddTask={showQuickAddTask}
 				setShowQuickAddTask={setShowQuickAddTask}
 			/>

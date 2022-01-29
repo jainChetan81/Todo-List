@@ -9,20 +9,14 @@ import TaskDate from "./TaskDate";
 
 type Props = {
 	showAddTaskMain?: boolean;
-	showShouldMain?: boolean;
 	showQuickAddTask: boolean;
 	setShowQuickAddTask: Dispatch<SetStateAction<boolean>>;
 };
-const AddTasks: FC<Props> = ({
-	showAddTaskMain = true,
-	showShouldMain = false,
-	showQuickAddTask = false,
-	setShowQuickAddTask = () => {},
-}) => {
+const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false, setShowQuickAddTask = () => {} }) => {
 	const [task, setTask] = useState<string>("");
 	const [taskDate, setTaskDate] = useState<string>("");
 	const [project, setProject] = useState<string>("");
-	const [showMain, setShowMain] = useState<boolean>(showShouldMain);
+	const [showMain, setShowMain] = useState<boolean>(false);
 	const [showProjectOverlay, setShowProjectOverlay] = useState<boolean>(false);
 	const [showTaskDate, setShowTaskDate] = useState<boolean>(false);
 	const { selectedProject } = useSelectedProjectValue();
@@ -56,7 +50,7 @@ const AddTasks: FC<Props> = ({
 					if (showQuickAddTask !== undefined) setShowQuickAddTask(false);
 				})
 				.catch((e: Error) => {
-					console.error("error", e.message);
+					console.error("error #%d", e.message);
 				})
 		);
 	};
