@@ -51,6 +51,7 @@ const Input: FC<Props> = ({ message, setMessage, testid }) => {
 					onChange={(e: ChangeEvent<HTMLInputElement>) => setMessage(e.currentTarget.value)}
 					required
 					minLength={5}
+					maxLength={20}
 					name="add_message"
 				/>
 			</div>

@@ -33,7 +33,7 @@ const Tasks: FC = () => {
 					<li key={task.id}>
 						<Checkbox id={task.id} archived={task.archived} />
 						<span>{task.task}</span>
-						<button onClick={() => deleteTask(task.id)}>
+						<button onClick={() => deleteTask(task.id)} aria-label="Delete this Task">
 							<FaTrashAlt />
 						</button>
 					</li>
@@ -46,7 +46,7 @@ const Tasks: FC = () => {
 					<li key={task.id}>
 						<Checkbox id={task.id} archived={task.archived} />
 						<s>{task.task}</s>
-						<button onClick={() => deleteTask(task.id)}>
+						<button onClick={() => deleteTask(task.id)} aria-label="Delete this Task">
 							<FaTrashAlt />
 						</button>
 					</li>

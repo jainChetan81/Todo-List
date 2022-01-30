@@ -14,7 +14,8 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	const [projectName, setProjectName] = useState<string>("");
 	const projectId = generatePushId();
 	const { projects, setProjects } = useProjectsValue();
-	const addProject = () => {
+	const addProject = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		addDoc(projectCollectionRef, {
 			projectId,
 			name: projectName,
@@ -35,9 +36,14 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	return (
 		<div className="add-project" data-testid="add-project">
 			{show && (
-				<form className="add-project__input" onSubmit={(e) => e.preventDefault()}>
+				<form className="add-project__input" onSubmit={(e: FormEvent<HTMLFormElement>) => addProject(e)}>
 					<Input message={projectName} testid="project-name" setMessage={setProjectName} />
-					<button className="add-project__submit" type="submit" aria-label="Add Project" onClick={addProject}>
+					<button
+						className="add-project__submit"
+						type="submit"
+						aria-label="Add Project"
+						// onClick={addProject}
+					>
 						Add Project
 					</button>
 					<button

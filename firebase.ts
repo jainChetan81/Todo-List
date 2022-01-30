@@ -19,8 +19,8 @@ const firebaseConfig: FirebaseApp = initializeApp({
 });
 
 const firestore: Firestore = getFirestore(firebaseConfig);
-const auth: Auth = getAuth(firebaseConfig);
+// const auth: Auth = getAuth(firebaseConfig);
 export const projectCollectionRef: CollectionReference<DocumentData> = collection(firestore, "projects");
 export const taskCollectionRef: CollectionReference<DocumentData> = collection(firestore, "tasks");
 
-export { firebaseConfig as firebase, firestore, auth };
+export { firebaseConfig as firebase, firestore };
