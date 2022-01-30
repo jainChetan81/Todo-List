@@ -22,12 +22,14 @@ const IndividualProject: FC<Props> = ({ project }) => {
 	return (
 		<>
 			<span className="sidebar__project-name">{project.name}</span>
-			<button
+			<li
 				className="sidebar__project-delete"
 				data-testid="delete-project"
 				onClick={() => setShowConfirm(!showConfirm)}
 				onKeyDown={() => setShowConfirm(!showConfirm)}
 				aria-label="Delete Project"
+				role="button"
+				tabIndex={0}
 			>
 				<FaTrash />{" "}
 				{showConfirm && (
@@ -47,7 +49,7 @@ const IndividualProject: FC<Props> = ({ project }) => {
 						</div>
 					</div>
 				)}
-			</button>
+			</li>
 		</>
 	);
 };

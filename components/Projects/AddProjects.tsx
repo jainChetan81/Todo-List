@@ -1,5 +1,6 @@
 import { addDoc } from "firebase/firestore";
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useState } from "react";
+import { Input } from "..";
 import { Projects } from "../../@types";
 import { useProjectsValue } from "../../context";
 import { projectCollectionRef } from "../../firebase";
@@ -13,8 +14,7 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	const [projectName, setProjectName] = useState<string>("");
 	const projectId = generatePushId();
 	const { projects, setProjects } = useProjectsValue();
-	const addProject = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+	const addProject = () => {
 		addDoc(projectCollectionRef, {
 			projectId,
 			name: projectName,
@@ -35,26 +35,16 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	return (
 		<div className="add-project" data-testid="add-project">
 			{show && (
-				<form className="add-project__input" onSubmit={addProject}>
-					<input
-						type="text"
-						name="name"
-						value={projectName}
-						onChange={(e: ChangeEvent<HTMLInputElement>) => setProjectName(e.target.value)}
-						data-testid="project-name"
-						className="add-project__name"
-						placeholder="Name your project"
-						required
-						minLength={5}
-						aria-label="Project Name"
-					/>
-					<button className="add-project__submit" type="submit" aria-label="Add Project">
+				<form className="add-project__input" onSubmit={(e) => e.preventDefault()}>
+					<Input message={projectName} testid="project-name" setMessage={setProjectName} />
+					<button className="add-project__submit" type="submit" aria-label="Add Project" onClick={addProject}>
 						Add Project
 					</button>
 					<button
 						type="button"
 						className="add-project__cancel"
 						onClick={() => setShow(false)}
+						onKeyDown={() => setShow(false)}
 						data-testid="hide-project__overlay"
 						aria-label="Cancel Adding project"
 					>
@@ -64,8 +54,8 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 			)}
 			<button
 				type="button"
-				onClick={() => setShow(!show)}
-				onKeyDown={() => setShow(!show)}
+				onClick={() => setShow(true)}
+				onKeyDown={() => setShow(true)}
 				aria-label="Add Project"
 			>
 				<span className="add-project__plus">+</span>

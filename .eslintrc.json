@@ -32,12 +32,6 @@
 				"input[type=\"image\"]": ["InputImage"]
 			}
 		],
-		"jsx-a11y/autocomplete-valid": [
-			2,
-			{
-				"inputComponents": ["Input", "FormField"]
-			}
-		],
 		"jsx-a11y/anchor-is-valid": [
 			"error",
 			{
