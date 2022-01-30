@@ -99,6 +99,52 @@ button {
 		@content;
 	}
 }
+//41,64,100ems
+@mixin breakpoint($size, $direction) {
+	@if $size == small {
+		@if $direction == up {
+			@media (min-width: 41em) {
+				@content;
+			}
+		} @else if $direction == down {
+			@media (max-width: 41em) {
+				@content;
+			}
+		} @else {
+			@media (min-width: 0) and (max-width: 41em) {
+				@content;
+			}
+		}
+	} @else if $size == medium {
+		@if $direction == up {
+			@media (min-width: 64em) {
+				@content;
+			}
+		} @else if $direction == down {
+			@media (max-width: 64em) {
+				@content;
+			}
+		} @else {
+			@media (min-width: 41em) and (max-width: 64em) {
+				@content;
+			}
+		}
+	} @else if $size == large {
+		@if $direction == up {
+			@media (min-width: 100em) {
+				@content;
+			}
+		} @else if $direction == down {
+			@media (max-width: 100em) {
+				@content;
+			}
+		} @else {
+			@media (min-width: 64em) and (max-width: 100em) {
+				@content;
+			}
+		}
+	}
+}
 
 // main content
 

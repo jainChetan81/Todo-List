@@ -53,6 +53,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 				})
 		);
 	};
+	const isValid = (): boolean => message.length > 5 && message.length < 20;
 	return (
 		<div className={showQuickAddTask ? "add-task add-task__overlay" : "add-task"} data-testid="add-task-comp">
 			{showAddTaskMain && (
@@ -98,6 +99,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						data-testid="add-task-submit"
 						aria-label="Add Task"
 						onClick={addTask}
+						disabled={!isValid()}
 					>
 						Add Task
 					</button>

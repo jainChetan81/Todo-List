@@ -6,11 +6,13 @@
 		"build": "yarn cache clean --force && next build",
 		"start": "next start",
 		"lint": "next lint",
-		"test": "npm run lint && npm run test:jest",
+		"test": "yarn lint && yarn test:jest",
 		"test:jest": "jest --verbose --coverage",
 		"test:watch": "jest --watchAll --verbose --coverage"
 	},
 	"dependencies": {
+		"@testing-library/jest-dom": "^5.16.1",
+		"@testing-library/react": "^12.1.2",
 		"emoji-mart": "^3.0.0",
 		"firebase": "^9.6.3",
 		"moment": "^2.29.1",
@@ -33,6 +35,7 @@
 		"eslint-plugin-jsx-a11y": "^4.0.0",
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
+		"jest": "^27.4.7",
 		"postcss": "^8.4.5",
 		"postcss-preset-env": "^7.1.0",
 		"prettier": "^2.5.1",
