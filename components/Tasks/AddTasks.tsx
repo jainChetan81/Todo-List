@@ -46,7 +46,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 					setShowMain(false);
 					setShowProjectOverlay(false);
 					setShowTaskDate(false);
-					if (showQuickAddTask !== undefined) setShowQuickAddTask(false);
+					setShowQuickAddTask(false);
 				})
 				.catch((e: Error) => {
 					console.error("error #%d", e.message);
