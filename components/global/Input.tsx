@@ -17,14 +17,14 @@ const Input: FC<Props> = ({ message, setMessage, testid }) => {
 
 	const colonToUnicode = (message: string) =>
 		message.replace(/:[A-Za-z0-9_+-]+:/g, (x) => {
-			x = x.replace(/:/g, "");
-			let emoji: any = emojiIndex.emojis[x];
+			let newMessage = x.replace(/:/g, "");
+			const emoji: any = emojiIndex.emojis[x];
 			if (typeof emoji !== "undefined") {
 				const unicode: string = emoji.native;
 				if (typeof unicode !== "undefined") return unicode;
 			}
-			x = ":" + x + ":";
-			return x;
+			newMessage = ":" + newMessage + ":";
+			return newMessage;
 		});
 	return (
 		<>

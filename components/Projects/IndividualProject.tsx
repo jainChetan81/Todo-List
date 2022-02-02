@@ -28,6 +28,7 @@ const IndividualProject: FC<Props> = ({ project }) => {
 				onClick={() => setShowConfirm(!showConfirm)}
 				onKeyDown={() => setShowConfirm(!showConfirm)}
 				aria-label="Delete Project"
+				// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 				role="button"
 				tabIndex={0}
 			>

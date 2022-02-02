@@ -2,8 +2,6 @@
 
 # dependencies
 /node_modules
-yarn.lock
-/yarn.lock
 /.pnp
 .pnp.js
 
@@ -48,10 +46,6 @@ public/sw.js.map
 /.vscode
 .vscode/
 package-lock.json
-yarn.lock
-/yarn.lock
-yarn.lock/
-/yarn.lock/
 
 # production
 /build
