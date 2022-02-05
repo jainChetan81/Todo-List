@@ -2,7 +2,6 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 import { FC, useState } from "react";
 import { Header } from ".";
-import { ProjectsProvider, SelectedProjectProvider } from "../context";
 type LayoutType = {
 	title: string;
 	keywords?: string;
@@ -23,12 +22,8 @@ const Layout: FC<LayoutType> = ({ title, keywords, description, children }) => {
 				<link rel="manifest" href="manifest.json" />
 			</Head>
 			<div data-testid="application" className={darkMode ? "darkMode" : undefined}>
-				<SelectedProjectProvider>
-					<ProjectsProvider>
-						<Header darkMode={darkMode} setDarkMode={setDarkMode} />
-						<main className="content">{children}</main>
-					</ProjectsProvider>
-				</SelectedProjectProvider>
+							<Header darkMode={darkMode} setDarkMode={setDarkMode} />
+							<main>{children}</main>
 			</div>
 		</>
 	);
