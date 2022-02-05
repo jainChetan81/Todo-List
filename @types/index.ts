@@ -16,6 +16,7 @@ export type ProjectContextType = {
 	projects: Projects[] | [];
 	setProjects: Dispatch<SetStateAction<[] | Projects[]>>;
 };
+
 export type COLLATED_TASKS = {
 	key: string;
 	name: string;
@@ -25,11 +26,4 @@ export type Projects = {
 	name: string;
 	projectId: string;
 	userId: string;
-};
-export type User = {
-	firstName: string;
-	lastName: string;
-	twitter: string;
-	userId: string;
-	id: string;
 };

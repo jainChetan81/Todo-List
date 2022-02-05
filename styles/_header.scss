@@ -96,6 +96,13 @@ header {
 						color: #fff;
 					}
 				}
+				&.settings__user {
+					margin-left: 15px;
+					font-size: 20px;
+					button {
+						color: #fff;
+					}
+				}
 				&.settings__dark-mode svg {
 					width: 20px;
 					height: 20px;

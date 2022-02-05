@@ -2,7 +2,7 @@ import { addDoc } from "firebase/firestore";
 import { FC, FormEvent, useState } from "react";
 import { Input } from "..";
 import { Projects } from "../../@types";
-import { useProjectsValue } from "../../context";
+import { useProjectsValue, useUserValue } from "../../context";
 import { projectCollectionRef } from "../../firebase";
 import { generatePushId } from "../../helpers";
 
@@ -14,17 +14,15 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 	const [projectName, setProjectName] = useState<string>("");
 	const projectId = generatePushId();
 	const { projects, setProjects } = useProjectsValue();
+	const { user } = useUserValue();
 	const addProject = () => {
 		addDoc(projectCollectionRef, {
 			projectId,
 			name: projectName,
-			userId: "UESs1wMq3aMShh6543F9",
+			userId: user?.uid,
 		})
 			.then(() => {
-				setProjects([
-					...projects,
-					{ projectId, name: projectName, userId: "UESs1wMq3aMShh6543F9" } as Projects,
-				]);
+				setProjects([...projects, { projectId, name: projectName, userId: user?.uid } as Projects]);
 				setProjectName("");
 				setShow(false);
 			})

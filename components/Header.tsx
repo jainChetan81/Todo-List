@@ -1,6 +1,11 @@
+import { signOut } from "firebase/auth";
 import Image from "next/image";
-import { Dispatch, FC, SetStateAction, useState } from "react";
-import { FaPizzaSlice } from "react-icons/fa";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { FaPizzaSlice, FaUser } from "react-icons/fa";
+import { useUserValue } from "../context";
+import { firebaseAuth } from "../firebase";
 import AddTasks from "./Tasks/AddTasks";
 type Props = {
 	darkMode: boolean;
@@ -9,6 +14,19 @@ type Props = {
 const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 	const [showQuickAddTask, setShowQuickAddTask] = useState<boolean>(false);
 	const [showSidebar, setShowSidebar] = useState<boolean>(true);
+	const router = useRouter();
+	const { setUser } = useUserValue();
+	const logoutButton = () => {
+		signOut(firebaseAuth)
+			.then(() => {
+				setUser(null);
+				router.push("/login");
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	};
+
 	return (
 		<header className="header" data-testid="header">
 			<button className="logo__handle" onClick={() => setShowSidebar(!showSidebar)} aria-label="Show Sidebar">
@@ -38,12 +56,16 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 			</button>
 			<nav>
 				<div className="logo">
-					<Image
-						src={`${process.env.NEXT_PUBLIC_IMAGEKIT_URL}/todo?tr=w-30,h-30`}
-						width={30}
-						height={30}
-						alt="todo list logo"
-					/>
+					<Link href="/">
+						<a>
+							<Image
+								src={`${process.env.NEXT_PUBLIC_IMAGEKIT_URL}/todo?tr=w-30,h-30`}
+								width={30}
+								height={30}
+								alt="todo list logo"
+							/>
+						</a>
+					</Link>
 				</div>
 				<div className="settings">
 					<ul>
@@ -65,6 +87,16 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 								onKeyDown={() => setDarkMode(!darkMode)}
 							>
 								<FaPizzaSlice />
+							</button>
+						</li>
+						<li className="settings__user">
+							<button
+								aria-label="Logout User"
+								data-test-id="logout-button"
+								onClick={logoutButton}
+								onKeyDown={logoutButton}
+							>
+								<FaUser />
 							</button>
 						</li>
 					</ul>

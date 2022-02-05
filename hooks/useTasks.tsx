@@ -5,13 +5,15 @@ import { onSnapshot, Query, query, QueryConstraint, Unsubscribe, where } from "f
 import type { DocumentData, QuerySnapshot } from "firebase/firestore";
 import moment from "moment";
 import { collatedTaskExist } from "../helpers";
+import { useUserValue } from "../context";
 
 const useTasks = (selectedProject: string | number) => {
 	const [tasks, setTasks] = useState<Tasks[] | []>([]);
 	const [archivedTasks, setArchivedTasks] = useState<Tasks[] | []>([]);
+	const { user } = useUserValue();
 	useEffect(() => {
 		const fetchTasks = () => {
-			const queryConsUserId: QueryConstraint = where("userId", "==", "UESs1wMq3aMShh6543F9");
+			const queryConsUserId: QueryConstraint = where("userId", "==", user?.uid);
 			const queryConsProjectId: QueryConstraint = where("projectId", "==", selectedProject);
 			const queryConsDate: QueryConstraint = where("date", "==", moment().format("DD/MM/YYYY"));
 			let finalQuery: Query<DocumentData> = query(taskCollectionRef, queryConsUserId);
