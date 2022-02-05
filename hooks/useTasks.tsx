@@ -11,7 +11,7 @@ const useTasks = (selectedProject: string | number) => {
 	const [archivedTasks, setArchivedTasks] = useState<Tasks[] | []>([]);
 	useEffect(() => {
 		const fetchTasks = () => {
-			const queryConsUserId: QueryConstraint = where("userId", "==", "UESs1wMq3aMShh6543F9");
+			const queryConsUserId: QueryConstraint = where("userId", "==", "odo9YzDonvNluFRaEKKwzIN7tIp2");
 			const queryConsProjectId: QueryConstraint = where("projectId", "==", selectedProject);
 			const queryConsDate: QueryConstraint = where("date", "==", moment().format("DD/MM/YYYY"));
 			let finalQuery: Query<DocumentData> = query(taskCollectionRef, queryConsUserId);

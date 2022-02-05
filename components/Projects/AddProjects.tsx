@@ -18,12 +18,12 @@ const AddProjects: FC<Props> = ({ shouldShow = false }) => {
 		addDoc(projectCollectionRef, {
 			projectId,
 			name: projectName,
-			userId: "UESs1wMq3aMShh6543F9",
+			userId: "odo9YzDonvNluFRaEKKwzIN7tIp2",
 		})
 			.then(() => {
 				setProjects([
 					...projects,
-					{ projectId, name: projectName, userId: "UESs1wMq3aMShh6543F9" } as Projects,
+					{ projectId, name: projectName, userId: "odo9YzDonvNluFRaEKKwzIN7tIp2" } as Projects,
 				]);
 				setProjectName("");
 				setShow(false);
