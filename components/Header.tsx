@@ -15,20 +15,17 @@ const Header: FC<Props> = ({ darkMode, setDarkMode }) => {
 	const [showQuickAddTask, setShowQuickAddTask] = useState<boolean>(false);
 	const [showSidebar, setShowSidebar] = useState<boolean>(true);
 	const router = useRouter();
-	const { user, setUser } = useUserValue();
+	const { setUser } = useUserValue();
 	const logoutButton = () => {
 		signOut(firebaseAuth)
 			.then(() => {
-				setUser(undefined);
+				setUser(null);
 				router.push("/login");
 			})
 			.catch((err) => {
 				console.log(err.message);
 			});
 	};
-	useEffect(() => {
-		if (!user) router.push("/login");
-	}, [user, router]);
 
 	return (
 		<header className="header" data-testid="header">

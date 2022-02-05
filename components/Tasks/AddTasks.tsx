@@ -3,7 +3,7 @@ import moment from "moment";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { FaRegCalendarAlt, FaRegListAlt, FaSkullCrossbones } from "react-icons/fa";
 import { Input } from "..";
-import { useSelectedProjectValue } from "../../context";
+import { useSelectedProjectValue, useUserValue } from "../../context";
 import { taskCollectionRef } from "../../firebase";
 import ProjectOverlay from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
@@ -20,6 +20,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 	const [showProjectOverlay, setShowProjectOverlay] = useState<boolean>(false);
 	const [showTaskDate, setShowTaskDate] = useState<boolean>(false);
 	const { selectedProject } = useSelectedProjectValue();
+	const { user } = useUserValue();
 
 	const addTask = () => {
 		const projectId: string = project || selectedProject;
@@ -37,7 +38,7 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 				projectId,
 				task: message,
 				date: collatedDate || taskDate,
-				userId: "odo9YzDonvNluFRaEKKwzIN7tIp2",
+				userId: user?.uid,
 			})
 				.then(() => {
 					setMessage("");
@@ -53,7 +54,6 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 				})
 		);
 	};
-	const isValid = (): boolean => message.length > 5 && message.length < 20;
 	return (
 		<div className={showQuickAddTask ? "add-task add-task__overlay" : "add-task"} data-testid="add-task-comp">
 			{showAddTaskMain && (
@@ -99,7 +99,6 @@ const AddTasks: FC<Props> = ({ showAddTaskMain = true, showQuickAddTask = false,
 						data-testid="add-task-submit"
 						aria-label="Add Task"
 						onClick={addTask}
-						disabled={!isValid()}
 					>
 						Add Task
 					</button>

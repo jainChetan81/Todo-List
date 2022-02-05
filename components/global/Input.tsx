@@ -17,8 +17,9 @@ const Input: FC<Props> = ({ message, setMessage, testid }) => {
 
 	const colonToUnicode = (message: string) =>
 		message.replace(/:[A-Za-z0-9_+-]+:/g, (x) => {
-			let newMessage = x.replace(/:/g, "");
-			const emoji: any = emojiIndex.emojis[x];
+			let newMessage = x;
+			newMessage = newMessage.replace(/:/g, "");
+			const emoji: any = emojiIndex.emojis[newMessage];
 			if (typeof emoji !== "undefined") {
 				const unicode: string = emoji.native;
 				if (typeof unicode !== "undefined") return unicode;
@@ -51,7 +52,7 @@ const Input: FC<Props> = ({ message, setMessage, testid }) => {
 					onChange={(e: ChangeEvent<HTMLInputElement>) => setMessage(e.currentTarget.value)}
 					required
 					minLength={5}
-					maxLength={20}
+					maxLength={40}
 					name="add_message"
 				/>
 			</div>

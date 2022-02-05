@@ -12,12 +12,14 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Projects } from "../@types";
+import { useUserValue } from "../context";
 import { projectCollectionRef } from "../firebase";
 
 const useProjects = () => {
 	const [projects, setProjects] = useState<Projects[] | []>([]);
+	const { user } = useUserValue();
 	useEffect(() => {
-		const queryConsUserId: QueryConstraint = where("userId", "==", "odo9YzDonvNluFRaEKKwzIN7tIp2");
+		const queryConsUserId: QueryConstraint = where("userId", "==", user?.uid || "");
 		const queryByProjects: QueryConstraint = orderBy("projectId", "asc");
 		const finalQuery: Query<DocumentData> = query(projectCollectionRef, queryConsUserId, queryByProjects);
 		const unsubscribe: Unsubscribe = onSnapshot(finalQuery, (snapshot: QuerySnapshot<DocumentData>) => {
@@ -25,7 +27,7 @@ const useProjects = () => {
 			snapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
 				docs.push({ docId: doc.id, ...doc.data() } as Projects);
 			});
-			if (JSON.stringify(projects) !== JSON.stringify(docs)) {
+			if (JSON.stringify(projects) !== JSON.stringify(docs) && user) {
 				setProjects(docs);
 			}
 		});
@@ -33,7 +35,7 @@ const useProjects = () => {
 		return () => {
 			unsubscribe();
 		};
-	}, [projects]);
+	}, [projects, user]);
 	return { projects, setProjects };
 };
 
